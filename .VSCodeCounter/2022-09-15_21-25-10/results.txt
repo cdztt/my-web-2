@@ -1,0 +1,100 @@
+Date : 2022-09-15 21:25:10
+Directory : c:\project\hueyond.run-vue
+Total : 54 files,  4392 codes, 59 comments, 328 blanks, all 4779 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          3 |      1,864 |          0 |          2 |      1,866 |
+| Vue        |         25 |      1,391 |          0 |        134 |      1,525 |
+| JavaScript |         12 |        807 |         40 |        111 |        958 |
+| Markdown   |         12 |        241 |          0 |         62 |        303 |
+| Less       |          1 |         75 |         13 |         16 |        104 |
+| HTML       |          1 |         14 |          6 |          3 |         23 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                            | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                               |         54 |      4,392 |         59 |        328 |      4,779 |
+| src                                                                             |         49 |      2,565 |         52 |        320 |      2,937 |
+| src\assets                                                                      |         12 |        300 |          0 |         61 |        361 |
+| src\assets\files                                                                |         11 |        241 |          0 |         61 |        302 |
+| src\assets\files\code                                                           |         10 |        238 |          0 |         58 |        296 |
+| src\assets\files\english                                                        |          1 |          3 |          0 |          3 |          6 |
+| src\components                                                                  |         18 |      1,061 |          0 |         98 |      1,159 |
+| src\composables                                                                 |          1 |         16 |          0 |          3 |         19 |
+| src\plugins                                                                     |          2 |         88 |          0 |         11 |         99 |
+| src\plugins\calendar                                                            |          1 |         13 |          0 |          2 |         15 |
+| src\plugins\message                                                             |          1 |         75 |          0 |          9 |         84 |
+| src\router                                                                      |          1 |         69 |          0 |          3 |         72 |
+| src\store                                                                       |          2 |         70 |          0 |          9 |         79 |
+| src\utils                                                                       |          4 |        507 |         39 |         77 |        623 |
+| src\utils\calendar                                                              |          1 |        108 |          9 |         21 |        138 |
+| src\utils\game                                                                  |          2 |        369 |         30 |         53 |        452 |
+| src\utils\time                                                                  |          1 |         30 |          0 |          3 |         33 |
+| src\views                                                                       |          6 |        291 |          0 |         31 |        322 |
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                        | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\project\hueyond.run-vue\README.md                                            | Markdown   |          0 |          0 |          1 |          1 |
+| c:\project\hueyond.run-vue\index.html                                           | HTML       |         14 |          6 |          3 |         23 |
+| c:\project\hueyond.run-vue\package-lock.json                                    | JSON       |      1,783 |          0 |          1 |      1,784 |
+| c:\project\hueyond.run-vue\package.json                                         | JSON       |         22 |          0 |          1 |         23 |
+| c:\project\hueyond.run-vue\src\App.vue                                          | Vue        |         39 |          0 |          5 |         44 |
+| c:\project\hueyond.run-vue\src\assets\files\code\Buffer-to-String.md            | Markdown   |         16 |          0 |          2 |         18 |
+| c:\project\hueyond.run-vue\src\assets\files\code\mutate.md                      | Markdown   |         23 |          0 |          3 |         26 |
+| c:\project\hueyond.run-vue\src\assets\files\code\react里的KeepAlive.md            | Markdown   |          6 |          0 |          2 |          8 |
+| c:\project\hueyond.run-vue\src\assets\files\code\shallow-copy-trap.md           | Markdown   |         23 |          0 |          7 |         30 |
+| c:\project\hueyond.run-vue\src\assets\files\code\the-third-kind-variable.md     | Markdown   |         15 |          0 |          0 |         15 |
+| c:\project\hueyond.run-vue\src\assets\files\code\undefined-and-null.md          | Markdown   |         16 |          0 |          5 |         21 |
+| c:\project\hueyond.run-vue\src\assets\files\code\useMemo和memo.md                | Markdown   |          5 |          0 |          0 |          5 |
+| c:\project\hueyond.run-vue\src\assets\files\code\vue-react-syntax-comparison.md | Markdown   |         98 |          0 |         33 |        131 |
+| c:\project\hueyond.run-vue\src\assets\files\code\zen-of-python.md               | Markdown   |         20 |          0 |          1 |         21 |
+| c:\project\hueyond.run-vue\src\assets\files\code\其实一个props就够了.md                | Markdown   |         16 |          0 |          5 |         21 |
+| c:\project\hueyond.run-vue\src\assets\files\english\no-security.md              | Markdown   |          3 |          0 |          3 |          6 |
+| c:\project\hueyond.run-vue\src\assets\projects.json                             | JSON       |         59 |          0 |          0 |         59 |
+| c:\project\hueyond.run-vue\src\components\Calendar.vue                          | Vue        |         87 |          0 |          6 |         93 |
+| c:\project\hueyond.run-vue\src\components\CalendarDatePicker.vue                | Vue        |        104 |          0 |          9 |        113 |
+| c:\project\hueyond.run-vue\src\components\CalendarTimeScroller.vue              | Vue        |         57 |          0 |          3 |         60 |
+| c:\project\hueyond.run-vue\src\components\FileList.vue                          | Vue        |         48 |          0 |          3 |         51 |
+| c:\project\hueyond.run-vue\src\components\FileViewer.vue                        | Vue        |        127 |          0 |         14 |        141 |
+| c:\project\hueyond.run-vue\src\components\FoldButton.vue                        | Vue        |         23 |          0 |          3 |         26 |
+| c:\project\hueyond.run-vue\src\components\GameBoard.vue                         | Vue        |         51 |          0 |          3 |         54 |
+| c:\project\hueyond.run-vue\src\components\GamePanel.vue                         | Vue        |         67 |          0 |          2 |         69 |
+| c:\project\hueyond.run-vue\src\components\Message.vue                           | Vue        |         69 |          0 |          4 |         73 |
+| c:\project\hueyond.run-vue\src\components\NavTab.vue                            | Vue        |         29 |          0 |          4 |         33 |
+| c:\project\hueyond.run-vue\src\components\Null.vue                              | Vue        |          5 |          0 |          0 |          5 |
+| c:\project\hueyond.run-vue\src\components\NumberScroller.vue                    | Vue        |         78 |          0 |         12 |         90 |
+| c:\project\hueyond.run-vue\src\components\PersonalStatement.vue                 | Vue        |          8 |          0 |          2 |         10 |
+| c:\project\hueyond.run-vue\src\components\ProjectList.vue                       | Vue        |         87 |          0 |         14 |        101 |
+| c:\project\hueyond.run-vue\src\components\Resume.vue                            | Vue        |         31 |          0 |          4 |         35 |
+| c:\project\hueyond.run-vue\src\components\SideMenu.vue                          | Vue        |         57 |          0 |          8 |         65 |
+| c:\project\hueyond.run-vue\src\components\TodoMain.vue                          | Vue        |         77 |          0 |          4 |         81 |
+| c:\project\hueyond.run-vue\src\components\TodoMenu.vue                          | Vue        |         56 |          0 |          3 |         59 |
+| c:\project\hueyond.run-vue\src\composables\useState.js                          | JavaScript |         16 |          0 |          3 |         19 |
+| c:\project\hueyond.run-vue\src\main.js                                          | JavaScript |         49 |          0 |          6 |         55 |
+| c:\project\hueyond.run-vue\src\plugins\calendar\index.js                        | JavaScript |         13 |          0 |          2 |         15 |
+| c:\project\hueyond.run-vue\src\plugins\message\index.js                         | JavaScript |         75 |          0 |          9 |         84 |
+| c:\project\hueyond.run-vue\src\router\index.js                                  | JavaScript |         69 |          0 |          3 |         72 |
+| c:\project\hueyond.run-vue\src\store\axios.js                                   | JavaScript |          7 |          0 |          1 |          8 |
+| c:\project\hueyond.run-vue\src\store\blog.js                                    | JavaScript |         63 |          0 |          8 |         71 |
+| c:\project\hueyond.run-vue\src\style.less                                       | Less       |         75 |         13 |         16 |        104 |
+| c:\project\hueyond.run-vue\src\utils\calendar\Calendar.js                       | JavaScript |        108 |          9 |         21 |        138 |
+| c:\project\hueyond.run-vue\src\utils\game\Ai.js                                 | JavaScript |        166 |         30 |         21 |        217 |
+| c:\project\hueyond.run-vue\src\utils\game\Game.js                               | JavaScript |        203 |          0 |         32 |        235 |
+| c:\project\hueyond.run-vue\src\utils\time\index.js                              | JavaScript |         30 |          0 |          3 |         33 |
+| c:\project\hueyond.run-vue\src\views\About.vue                                  | Vue        |         40 |          0 |          4 |         44 |
+| c:\project\hueyond.run-vue\src\views\Blog.vue                                   | Vue        |         84 |          0 |         10 |         94 |
+| c:\project\hueyond.run-vue\src\views\Game.vue                                   | Vue        |         83 |          0 |         14 |         97 |
+| c:\project\hueyond.run-vue\src\views\Home.vue                                   | Vue        |          5 |          0 |          0 |          5 |
+| c:\project\hueyond.run-vue\src\views\Sider.vue                                  | Vue        |         47 |          0 |          2 |         49 |
+| c:\project\hueyond.run-vue\src\views\Todo.vue                                   | Vue        |         32 |          0 |          1 |         33 |
+| c:\project\hueyond.run-vue\vite.config.js                                       | JavaScript |          8 |          1 |          2 |         11 |
+| Total                                                                           |            |      4,392 |         59 |        328 |      4,779 |
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
