@@ -2,8 +2,374 @@
 import { computed, inject } from 'vue';
 import CalendarClass from '../utils/calendar/Calendar.js';
 import TodoAddTask from './TodoAddTask.vue';
+import TodoTaskList from './TodoTaskList.vue';
 
 const props = defineProps(['filterType'])
+
+const fakeData = [
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+]
+const fakeDataShort = [
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 1,
+        taskContent: '学习',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 2,
+        taskContent: '跑步',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+    {
+        id: 3,
+        taskContent: '看剧',
+        createdTime: 0,
+        important: false,
+        isFinished: false,
+        deadline: 0
+    },
+]
 
 const todoMenuItems = inject('todoMenuItems')
 const menuItem = computed(() => todoMenuItems[props.filterType])
@@ -20,61 +386,26 @@ const menuItem = computed(() => todoMenuItems[props.filterType])
                 ⋯
             </span>
             <div v-show="menuItem.filterType === 'today'"
-                class="todomain-date"
+                class="todomain-title-date"
             >
                 {{ CalendarClass.getNowDate().dateDay }}
             </div>
         </div>
 
         <div class="todomain-list">
-            <!--<Calendar />-->
-            <pre>
-                1
-                1
-                11
-                1
-                1
-                1
-                1
-                1
-                1
-                11
-                1
-                1
-                1
-                2
-                3
-                31
-                231
-                3
-                13
-                1
-                31
-                3
-                1
-                3
-                1
-                31
-                3
-            </pre>
+            <TodoTaskList :data="fakeData"/>
+            <!--<TodoTaskList :data="fakeDataShort"/>-->
         </div>
 
-        <!--<div class="todomain-addtask theme-background-color">
-            <div class="todomain-addtask-blank"></div>
-            <div class="todomain-addtask-input">
-                <span class="todomain-addtask-input-prefix">+</span>
-                <input type="text"
-                    class="todomain-addtask-input-text"
-                />
-            </div>
-            <div class="todomain-addtask-blank"></div>
-        </div>-->
-        <TodoAddTask />
+        <TodoAddTask class="todomain-addtask"/>
     </div>
 </template>
 <style scoped lang="less">
 .todomain {
+    height: var(--main-fit-height);
     padding: 0 1rem;
+    display: grid;
+    grid-template-rows: 80px 1fr 80px;
     &-title {
         font-size: 1.5rem;
         display: grid;
@@ -82,30 +413,15 @@ const menuItem = computed(() => todoMenuItems[props.filterType])
         position: sticky;
         top: 0;
         z-index: 1;
+        &-date {
+            font-size: 0.8rem;
+        }
     }
-    &-date {
-        font-size: 0.8rem;
+    &-list {
+        overflow-y: scroll;
     }
-    //&-addtask {
-    //    position: sticky;
-    //    bottom: 0;
-    //    &-input {
-    //        border: 2px solid gray;
-    //        border-radius: 5px;
-    //        display: grid;
-    //        grid-template-columns: auto 1fr;
-    //        &-prefix {
-    //            font-size: 2rem;
-    //            margin: 0 0.5rem;
-    //        }
-    //        &-text {
-    //            border: none;
-    //            font-size: 1.5rem;
-    //        }
-    //    }
-    //    &-blank {
-    //        height: 2rem;
-    //    }
-    //}
+    &-addtask {
+        margin-top: auto;
+    }
 }
 </style>

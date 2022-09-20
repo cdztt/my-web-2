@@ -1,6 +1,5 @@
 <script setup>
 import { RouterView } from 'vue-router';
-//import Message from './components/Message.vue';
 import Sider from './views/Sider.vue';
 
 //onMounted(() => {
@@ -16,7 +15,6 @@ import Sider from './views/Sider.vue';
             <RouterView />
         </div>
     </div>
-    <!--<Message />-->
 </template>
 
 <style scoped lang="less">

@@ -25,9 +25,8 @@ const filterType = ref('today')
         padding: 1rem;
     }
     &-main {
-        //background-color: rgba(128, 128, 128, 0.4);
-        //border-radius: 6px;
-        overflow-y: scroll;
+        //height: inherit;
+        //overflow-y: scroll;
     }
 }
 </style>

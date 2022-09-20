@@ -21,12 +21,14 @@ const handleInputFocus = () => {
 </script>
 <template>
     <div class="todo-addtask theme-background-color">
-        <div class="todo-addtask-blank"></div>
+        <!--<div class="todo-addtask-blank"></div>-->
 
         <div class="todo-addtask-input">
             <span class="todo-addtask-input-prefix"
                 @mouseover="tooltip.config({ content: '确定' }).popup"
-            >+</span>
+            >
+                +
+            </span>
             <input type="text"
                 class="todo-addtask-input-text"
                 v-model="taskText"
@@ -46,14 +48,21 @@ const handleInputFocus = () => {
             </span>
         </div>
 
-        <div class="todo-addtask-blank"></div>
+        <!--<div class="todo-addtask-blank"></div>-->
     </div>
 </template>
 <style scoped lang="less">
 .todo {
     &-addtask {
-        position: sticky;
-        bottom: 0;
+        //position: absolute;
+        //bottom: calc(1rem + 1px);
+        //position: sticky;
+        //bottom: 0;
+        //left: 0;
+        //right: 0;
+        //width: 100%;
+        //border: 1px solid red;
+        //position: sticky;
         &-input {
             border: 2px solid gray;
             border-radius: 5px;
@@ -62,6 +71,7 @@ const handleInputFocus = () => {
             &-prefix {
                 font-size: 2rem;
                 margin: 0 0.8rem;
+                cursor: default;
             }
             &-text {
                 border: none;
