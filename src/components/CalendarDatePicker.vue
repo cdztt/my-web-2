@@ -105,14 +105,19 @@ td {
     padding: 0.2rem 0.4rem;
 }
 .selected {
-    outline: 1px solid orange;
-    outline-offset: -2px;
+    outline: 2px solid;
+    outline-offset: -4px;
+    outline-color: #242424;
+    @media (prefers-color-scheme: light) {
+        outline-color: #ffffff;
+    }
+    background-color: orange;
 }
 .currentday {
     outline: 2px solid orange;
     outline-offset: -4px;
 }
 .othermonth {
-    color: rgba(128, 128, 128, 0.5);
+    color: gray;
 }
 </style>

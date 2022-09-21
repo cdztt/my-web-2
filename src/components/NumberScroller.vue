@@ -64,7 +64,7 @@ const showedNumber = (n) => {
 </script>
 <template>
     <div @wheel="handleWheel"
-        class="numberscroller theme-background-color"
+        class="numberscroller"
     >
         <div v-for="n of numbers"
             :key="n"

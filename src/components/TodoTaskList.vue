@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+
 const checkingLine = ref(null)
 const props = defineProps(['data'])
 ;

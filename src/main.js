@@ -3,6 +3,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import calendarPlugin from './plugins/calendar'
 import messagePlugin from './plugins/message'
+import popconfirmPlugin from './plugins/popconfirm'
 import tooltipPlugin from './plugins/tooltip'
 import router from './router'
 import './style.less'
@@ -15,6 +16,7 @@ app.use(pinia)
 app.use(messagePlugin)
 app.use(calendarPlugin)
 app.use(tooltipPlugin)
+app.use(popconfirmPlugin)
 
 app.config.globalProperties.marked = marked
 app.config.globalProperties.console = console

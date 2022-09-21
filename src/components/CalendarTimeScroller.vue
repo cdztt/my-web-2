@@ -34,7 +34,7 @@ const handleCancel = () => {
         class="calendartime"
     >
         <div v-show="timeVisible"
-            class="calendartime-input"
+            class="calendartime-input theme-background-color"
         >
             <div class="calendartime-input-scroller">
                 <NumberScroller v-bind="hoursProps"
@@ -44,7 +44,7 @@ const handleCancel = () => {
                     v-model:current="currentMinutes"
                 />
             </div>
-            <div class="calendartime-input-button theme-background-color">
+            <div class="calendartime-input-button">
                 <span @click="handleConfirm">
                     ✔
                 </span>

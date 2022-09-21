@@ -10,7 +10,7 @@ const props = defineProps({
         default: 'topleft'
     }
 })
-defineEmits(['onSave'])
+const emit = defineEmits(['onSave'])
 
 const { dayVisible, setDayVisible } = inject('calendar-day-visible')
 const {year, month, date, hours } = CalendarClass.getNowDate()
@@ -31,6 +31,7 @@ const updatedCalendar = computed(() => ({
 
 const contentRef = ref()
 const calendarRef = ref()
+const selfRef = inject('calendar-self')
 
 const offset = reactive({
     top: 0,
@@ -76,12 +77,17 @@ watch([dayVisible, () => props.placement], async () => {
             break
     }
 })
+
+const handleSave = () => {
+    emit('onSave', updatedCalendar.value)
+    setDayVisible(false)
+}
 ;
 </script>
 <template>
     <div class="calendar"
-        @click="e => e.stopPropagation()"
         @wheel="e => e.preventDefault()"
+        ref="selfRef"
     >
         <div ref="contentRef"
             @click="setDayVisible(true)"
@@ -90,7 +96,7 @@ watch([dayVisible, () => props.placement], async () => {
         </div>
 
         <div v-show="dayVisible"
-            class="calendar-main"
+            class="calendar-main theme-background-color"
             ref="calendarRef"
             :style="{ top: `${offset.top}px`, left: `${offset.left}px` }"
         >
@@ -103,15 +109,15 @@ watch([dayVisible, () => props.placement], async () => {
             />
 
             <div class="calendar-main-button">
+                <span class="calendar-main-button-item calendar-main-button-save"
+                    @click="handleSave"
+                >
+                    保存
+                </span>
                 <span class="calendar-main-button-item"
                     @click="setDayVisible(false)"
                 >
                     取消
-                </span>
-                <span class="calendar-main-button-item calendar-main-button-save"
-                    @click="$emit('onSave', updatedCalendar)"
-                >
-                    保存
                 </span>
             </div>
         </div>
@@ -141,6 +147,9 @@ watch([dayVisible, () => props.placement], async () => {
             }
             &-save {
                 border-color: orange;
+                &:hover {
+                    color: orange;
+                }
             }
         }
     }

@@ -1,16 +1,17 @@
 <script setup>
 import { computed, inject, nextTick, ref, watch } from 'vue';
 
-const selfRef = ref()
-const { x } = inject('tooltip-x')// viewport偏移
-const { y } = inject('tooltip-y')
-const { targetWidth } = inject('tooltip-targetwidth')// 触发mouseover的元素
-const { targetHeight } = inject('tooltip-targetheight')
-const { placement } = inject('tooltip-placement')
-const { content } = inject('tooltip-content')
-const { showed } = inject('tooltip-showed')
+const { x } = inject('popconfirm-x')// viewport偏移
+const { y } = inject('popconfirm-y')
+const { targetWidth } = inject('popconfirm-targetwidth')// 触发mouseover的元素
+const { targetHeight } = inject('popconfirm-targetheight')
+const { placement } = inject('popconfirm-placement')
+const { content } = inject('popconfirm-content')
+const { showed } = inject('popconfirm-showed')
+const popconfirm = inject('popconfirm')
+const selfRef = inject('popconfirm-self')
 
-const selfHeight = ref(0)// tooltip自己
+const selfHeight = ref(0)// 自己
 const selfWidth = ref(0)
 
 const style = computed(() => {
@@ -64,26 +65,64 @@ watch(showed, async (currentValue) => {
         selfWidth.value = selfRef.value.offsetWidth
     }
 })
+const handleConfirm = () => {
+    popconfirm.result.value = 'confirm'
+    popconfirm.close()
+}
+const handleCancel = () => {
+    popconfirm.result.value = 'cancel'
+    popconfirm.close()
+}
 ;
 </script>
 <template>
-    <div class="tooltip"
+    <div class="popconfirm theme-background-color"
         :style="style"
         ref="selfRef"
         v-show="showed"
     >
-        {{ content }}
+        <div class="popconfirm-text">
+            <span>
+                &nbsp;!&nbsp;!&nbsp;
+            </span>
+            {{ content }}
+        </div>
+        <div class="popconfirm-button">
+            <button @click="handleConfirm">
+                确定
+            </button>
+            <button @click="handleCancel">
+                取消
+            </button>
+        </div>
     </div>
 </template>
 <style scoped lang="less">
-.tooltip {
+.popconfirm {
     position: fixed;
     top: 0;
     left: 0;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid orange;
     border-radius: 3px;
-    padding: 0.1rem 0.2rem;
-    font-size: 0.9rem;
+    padding: 0.2rem 0.4rem;
+    &-text {
+        font-size: 1.1rem;
+        margin: 0.4rem 0;
+    }
+    &-button {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        margin: 0.4rem 0;
+        button {
+            width: fit-content;
+            padding: 0.1rem 0.2rem;
+            font-size: 0.9rem;
+            border-radius: 3px;
+            &:hover {
+                color: orange;
+            }
+        }
+    }
 }
 </style>
