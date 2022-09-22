@@ -8,6 +8,7 @@ export default class Calendar {
         this.startDayIndexOfCurrentMonth = null
         this.endDayIndexOfCurrentMonth = null
         this.currentDayIndex = null
+        this.currentDayInWeek = null
         this.setDay(year, month, date)
     }
 
@@ -28,13 +29,15 @@ export default class Calendar {
         const month = now.getMonth() + 1
         const date = now.getDate()
         const day = now.getDay()
+        const dayZh = Calendar.dayMapping[day]
         const hours = now.getHours()
         const minutes = now.getMinutes()
         return {
-            dateDay: `${month}月${date}日 ，星期${Calendar.dayMapping[day]}`,
+            dateDay: `${month}月${date}日, 星期${dayZh}`,
             year,
             month,
             date,
+            dayZh,
             hours,
             minutes
         }
@@ -134,6 +137,7 @@ export default class Calendar {
         this.startDayIndexOfCurrentMonth = firstDayIndexOfMonth + 1
         this.endDayIndexOfCurrentMonth = firstDayIndexOfMonth + lastDayOfMonth
         this.currentDayIndex = firstDayIndexOfMonth + date
+        this.currentDayInWeek = Calendar.dayMapping[this.currentDayIndex % 7 + 1]
     }
 
     decreaseMonth() {

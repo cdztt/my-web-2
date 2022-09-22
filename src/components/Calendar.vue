@@ -13,11 +13,12 @@ const props = defineProps({
 const emit = defineEmits(['onSave'])
 
 const { dayVisible, setDayVisible } = inject('calendar-day-visible')
-const {year, month, date, hours } = CalendarClass.getNowDate()
+const {year, month, date, dayZh, hours } = CalendarClass.getNowDate()
 
 const selectedYear = ref(year)
 const selectedMonth = ref(month)
 const selectedDate = ref(date)
+const selectedDay = ref(dayZh)
 const currentHours = ref(hours + 2)
 const currentMinutes = ref(0)
 
@@ -25,6 +26,7 @@ const updatedCalendar = computed(() => ({
     year: selectedYear.value,
     month: selectedMonth.value,
     date: selectedDate.value,
+    day: selectedDay.value,
     hours: currentHours.value,
     minutes: currentMinutes.value
 }))
@@ -103,6 +105,7 @@ const handleSave = () => {
             <CalendarDatePicker @update:selectedYear="e => selectedYear = e"
                 @update:selectedMonth="e => selectedMonth = e"
                 @update:selectedDate="e => selectedDate = e"
+                @update:selectedDay="e => selectedDay = e"
             />
             <CalendarTimeScroller v-model:currentHours="currentHours"
                 v-model:currentMinutes="currentMinutes"
@@ -134,6 +137,7 @@ const handleSave = () => {
         width: fit-content;
         padding: 0.5rem 0.5rem;
         position: absolute;
+        z-index: 1;
         &-button {
             display: grid;
             grid-template-columns: 1fr 1fr;

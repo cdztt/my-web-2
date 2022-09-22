@@ -1,5 +1,5 @@
 import { createPinia } from 'pinia'
-import { createApp } from 'vue'
+import { createApp, reactive } from 'vue'
 import App from './App.vue'
 import calendarPlugin from './plugins/calendar'
 import messagePlugin from './plugins/message'
@@ -25,34 +25,53 @@ const todoMenuItems = {
     today: {
         title: '我的一天',
         emoji: '☼',
-        filterType: 'today'
+        filterType: 'today',
+        type: 'static'
     },
     importance: {
         title: '重要',
         emoji: '✩',
-        filterType: 'importance'
+        filterType: 'importance',
+        type: 'static'
     },
     plans: {
         title: '计划内',
         emoji: '◫',
-        filterType: 'plans'
+        filterType: 'plans',
+        type: 'static'
     },
     all: {
         title: '全部',
         emoji: '∞',
-        filterType: 'all'
+        filterType: 'all',
+        type: 'static'
     },
     finished: {
         title: '已完成',
         emoji: '✓',
-        filterType: 'finished'
+        filterType: 'finished',
+        type: 'static'
     },
     tasks: {
         title: '任务',
         emoji: '⌂',
-        filterType: 'tasks'
+        filterType: 'tasks',
+        type: 'static'
     },
 }
-app.provide('todoMenuItems', todoMenuItems)
+const todoLists = reactive(Object.values(todoMenuItems))
+const actions = {
+    add(list) {
+        todoLists.push(list)
+    },
+    remove(title) {
+        const index = todoLists.findIndex(list => list.title === title)
+        todoLists.splice(index, 1)
+    },
+}
+app.provide('todoLists', {
+    lists: todoLists,
+    actions
+})
 
 app.mount('#app')

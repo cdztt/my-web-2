@@ -37,7 +37,7 @@ watch(popconfirm.result, (result) => {
 <template>
     <div class="todo-addtask-input theme-background-color">
         <span class="todo-addtask-input-prefix"
-            @mouseover="tooltip.config({ content: '确定' }).popup"
+            @mouseenter="tooltip.config({ content: '确定' }).popup"
             @click="handleAddTask"
         >
             +
@@ -54,16 +54,18 @@ watch(popconfirm.result, (result) => {
             <Calendar placement="topleft"
                 @onSave="handleCalendarSave"
             >
-                <span @mouseover="tooltip.config({ content: '添加截止日期' }).popup">
+                <span @mouseenter="tooltip.config({ content: '添加截止日期' }).popup">
                     📅
                 </span>
             </Calendar>
             <span v-show="taskDeadline"
-                @mouseover="tooltip.config({ content: '点击删除'}).popup"
+                @mouseenter="tooltip.config({ content: '点击删除'}).popup"
                 @click="popconfirm.config({ content: '删除截止日期' }).popup"
+                class="todo-addtask-input-options-deadline"
             >
-                <!--{{ taskDeadline?.hours }}-->
-                adfafadfaf
+                {{ `${taskDeadline?.month}月${taskDeadline?.date}日, 星期${taskDeadline?.day}` }}
+                <br />
+                {{ `${taskDeadline?.hours}点${taskDeadline?.minutes}分` }}
             </span>
         </span>
     </div>
@@ -88,6 +90,11 @@ watch(popconfirm.result, (result) => {
             font-size: 2rem;
             display: grid;
             grid-template-columns: auto auto;
+            margin: 0 0.2rem;
+            &-deadline {
+                font-size: 0.6rem;
+                margin: auto 0;
+            }
         }
     }
     &-blank {

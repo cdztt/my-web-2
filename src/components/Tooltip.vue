@@ -4,7 +4,7 @@ import { computed, inject, nextTick, ref, watch } from 'vue';
 const selfRef = ref()
 const { x } = inject('tooltip-x')// viewport偏移
 const { y } = inject('tooltip-y')
-const { targetWidth } = inject('tooltip-targetwidth')// 触发mouseover的元素
+const { targetWidth } = inject('tooltip-targetwidth')// 触发mouseenter的元素
 const { targetHeight } = inject('tooltip-targetheight')
 const { placement } = inject('tooltip-placement')
 const { content } = inject('tooltip-content')

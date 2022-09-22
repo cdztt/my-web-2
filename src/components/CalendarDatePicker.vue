@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import CalendarClass from '../utils/calendar/Calendar.js';
 
 const nowDate = CalendarClass.getNowDate()
-const emit = defineEmits(['update:selectedYear', 'update:selectedMonth', 'update:selectedDate'])
+const emit = defineEmits(['update:selectedYear', 'update:selectedMonth', 'update:selectedDate', 'update:selectedDay'])
 
 const selectedIndex = ref()
 const calendar = ref(new CalendarClass(nowDate.year, nowDate.month, nowDate.date))
@@ -37,6 +37,7 @@ const handleSelectDate = (i, j, date) => {
     emit('update:selectedYear', calendar.value.year)
     emit('update:selectedMonth', selectedMonth)
     emit('update:selectedDate', date)
+    emit('update:selectedDay', calendar.value.currentDayInWeek)
 }
 
 const handleDecreaseMonth = () => {
@@ -45,6 +46,7 @@ const handleDecreaseMonth = () => {
     emit('update:selectedYear', calendar.value.year)
     emit('update:selectedMonth', calendar.value.month)
     emit('update:selectedDate', 1)
+    emit('update:selectedDay', calendar.value.currentDayInWeek)
 }
 
 const handleIncreaseMonth = () => {
@@ -53,6 +55,7 @@ const handleIncreaseMonth = () => {
     emit('update:selectedYear', calendar.value.year)
     emit('update:selectedMonth', calendar.value.month)
     emit('update:selectedDate', 1)
+    emit('update:selectedDay', calendar.value.currentDayInWeek)
 }
 ;
 </script>
@@ -93,7 +96,6 @@ const handleIncreaseMonth = () => {
 <style scoped lang="less">
 .calendardate {
     &-month {
-        //height: 2.5rem;
         &-text {
             text-align: left;
         }

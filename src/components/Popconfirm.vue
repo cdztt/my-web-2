@@ -3,7 +3,7 @@ import { computed, inject, nextTick, ref, watch } from 'vue';
 
 const { x } = inject('popconfirm-x')// viewport偏移
 const { y } = inject('popconfirm-y')
-const { targetWidth } = inject('popconfirm-targetwidth')// 触发mouseover的元素
+const { targetWidth } = inject('popconfirm-targetwidth')// 触发mouseenter的元素
 const { targetHeight } = inject('popconfirm-targetheight')
 const { placement } = inject('popconfirm-placement')
 const { content } = inject('popconfirm-content')

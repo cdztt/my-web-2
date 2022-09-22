@@ -20,9 +20,10 @@ const filterType = ref('today')
 .todo {
     height: var(--main-fit-height);
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: minmax(150px, 1fr) 4fr;
     &-left {
-        padding: 1rem;
+        padding-right: 1rem;
+        //border: 1px solid gray;
     }
     &-main {
         //height: inherit;

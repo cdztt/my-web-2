@@ -76,7 +76,7 @@ export default function tooltipPlugin(app, options) {
 
             setShowed(true)
 
-            e.target.addEventListener('mouseout', function handler(e) {
+            e.target.addEventListener('mouseleave', function handler(e) {
                 setShowed(false)
                 e.target.removeEventListener('mouseout', handler)// 防止内存泄漏
             })

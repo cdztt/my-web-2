@@ -13,7 +13,8 @@ const fakeData = [
         createdTime: 0,
         important: false,
         isFinished: false,
-        deadline: 0
+        deadline: 0,
+        list: '任务'
     },
     {
         id: 2,
@@ -371,8 +372,8 @@ const fakeDataShort = [
     },
 ]
 
-const todoMenuItems = inject('todoMenuItems')
-const menuItem = computed(() => todoMenuItems[props.filterType])
+const todoLists = inject('todoLists')
+const menuItem = computed(() => todoLists.lists.find(list => list.filterType === props.filterType))
 ;
 </script>
 <template>
@@ -405,7 +406,7 @@ const menuItem = computed(() => todoMenuItems[props.filterType])
     height: var(--main-fit-height);
     padding: 0 1rem;
     display: grid;
-    grid-template-rows: 80px 1fr 80px;
+    grid-template-rows: auto 1fr 80px;
     &-title {
         font-size: 1.5rem;
         display: grid;
@@ -413,6 +414,7 @@ const menuItem = computed(() => todoMenuItems[props.filterType])
         position: sticky;
         top: 0;
         z-index: 1;
+        margin-bottom: 1rem;
         &-date {
             font-size: 0.8rem;
         }
