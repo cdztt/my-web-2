@@ -2,21 +2,26 @@
   "name": "hueyond.run-vue",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "devhttp": "cross-env NODE_ENV=dev NODE_PROTOCOL=http nodemon -w ../WS -e js,html ./index.js",
+    "devhttps": "cross-env NODE_ENV=dev NODE_PROTOCOL=https nodemon -w ../WS -e js,html ./index.js",
+    "starthttp": "cross-env NODE_ENV=prod NODE_PROTOCOL=http nodemon --openssl-legacy-provider ./index.js",
+    "starthttps": "cross-env NODE_ENV=prod NODE_PROTOCOL=https nodemon --openssl-legacy-provider ./index.js"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "pinia": "^2.0.21",
     "vue": "^3.2.37",
-    "vue-router": "^4.1.5"
+    "vue-router": "^4.1.5",
+    "ws": "^8.14.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.3",
     "less": "^4.1.3",
-    "vite": "^3.0.7"
+    "vite": "^3.0.7",
+    "cross-env": "^7.0.3"
   }
 }

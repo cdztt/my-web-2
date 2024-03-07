@@ -12,37 +12,38 @@ const handleClick = (filterType) => {
 }
 
 const listsRef = ref()
+const lastInputRef = ref()
 const count = ref(0)
-//const initialTitle = computed(() => `无标题列表 ${count.value}`)
-//const inputTitle = ref(initialTitle)
+
 const handleAddList = () => {
     count.value += 1
     todoLists.actions.add({
-        //title: ref(`无标题列表 ${count.value}`),
         title: `无标题列表 ${count.value}`,
         emoji: '🗒',
         filterType: Date.now().toString(),
         type: 'list'
     })
 }
-const lastInputRef = ref()
-const isChanged = ref(false)
-const handleBlur = (e) => {
-    //await nextTick()
-    console.log(e.target === lastInputRef.value)
-    if (todoLists.lists[todoLists.lists.length - 1].title !== e.target.value) {
-        todoLists.lists[todoLists.lists.length - 1].title = e.target.value
-        //e.target.disabled = true
-        isChanged.value = true
-    }
+
+const handleBlur = async (e) => {
+    todoLists.actions.updateLastListTitle(e.target.value)
+    await nextTick()
+    await nextTick()//必须用2次nextTick，比watch的nextTick多一次，确保在watch之后执行
+    lastInputRef.value.disabled = true
 }
-watch([count, todoLists.lists], async () => {
-    //isChanged.value = false
+
+watch([
+    () => todoLists.lists.length,
+    () => todoLists.lists[todoLists.lists.length - 1].title
+], async ([newLength], [oldLength]) => {
     await nextTick()
     lastInputRef.value = Array.from(listsRef.value.childNodes.values()).findLast(node => node.nodeType === 1).lastChild
-    lastInputRef.value.focus()
-    lastInputRef.value.select()
-    lastInputRef.value.addEventListener('change', handleBlur)
+
+    if (newLength !== oldLength) {
+        lastInputRef.value.focus()
+        lastInputRef.value.select()
+        lastInputRef.value.addEventListener('blur', handleBlur, { once: true })
+    }
 })
 ;
 </script>
@@ -70,7 +71,6 @@ watch([count, todoLists.lists], async () => {
                 <template v-else>
                     <input type="text"
                         :value="title"
-                        :disabled="index !== todoLists.lists.length - 1 || isChanged"
                         class="todomenu-lists-item-input"
                     />
                 </template>
