@@ -1,24 +1,24 @@
-const path = require('node:path');
-const { readFileSync } = require('node:fs');
-const { randomInt } = require('node:crypto');
+const path = require("node:path");
+const { readFileSync } = require("node:fs");
+const { randomInt } = require("node:crypto");
 
 function getTls(mode) {
   let tls;
-  if (mode === 'dev') {
+  if (mode === "dev") {
     tls = {
       key: readFileSync(
-        path.join(__dirname, './env/localhost/localhost-key.pem')
+        path.join(__dirname, "./env/localhost/localhost-key.pem"),
       ),
-      cert: readFileSync(path.join(__dirname, './env/localhost/localhost.pem')),
+      cert: readFileSync(path.join(__dirname, "./env/localhost/localhost.pem")),
     };
-  } else if (mode === 'prod') {
+  } else if (mode === "prod") {
     tls = {
       pfx: readFileSync(
-        path.join(__dirname, './env/hueyond.run_iis/hueyond.run.pfx')
+        path.join(__dirname, "./env/hueyond.run_iis/hueyond.run.pfx"),
       ),
       passphrase: readFileSync(
-        path.join(__dirname, './env/hueyond.run_iis/keystorePass.txt'),
-        'utf8'
+        path.join(__dirname, "./env/hueyond.run_iis/keystorePass.txt"),
+        "utf8",
       ),
     };
   }
@@ -31,7 +31,7 @@ function getUuid(size) {
     return String.fromCharCode(randomInt(97, 123));
   }
 
-  let uuid = '';
+  let uuid = "";
   for (let i = 0; i < size; i++) {
     uuid += getRandomLetter();
   }
@@ -41,17 +41,17 @@ function getUuid(size) {
 
 function parseCookie(rawCookie) {
   return Object.fromEntries(
-    rawCookie.split(';').map((el) => el.trim().split('='))
+    rawCookie.split(";").map((el) => el.trim().split("=")),
   );
 }
 
 function parseBodyToStr(request) {
   return new Promise((resolve, reject) => {
-    let body = '';
-    request.on('data', (chunk) => {
+    let body = "";
+    request.on("data", (chunk) => {
       body += chunk.toString();
     });
-    request.on('end', () => {
+    request.on("end", () => {
       resolve(body);
     });
   });

@@ -1,4 +1,4 @@
-const { getUuid } = require('./utils.js');
+const { getUuid } = require("./utils.js");
 
 class UserNames {
   constructor() {
@@ -8,7 +8,7 @@ class UserNames {
       .fill()
       .map(
         (v, k) =>
-          `${getUuid(3)}_${String(this.MAX_NUMBER - k).padStart(2, '0')}`
+          `${getUuid(3)}_${String(this.MAX_NUMBER - k).padStart(2, "0")}`,
       );
     this.onlineUsers = [];
     this.nickNameMap = new Map();
@@ -34,21 +34,21 @@ class UserNames {
 
   _borrowUserName(userName, nickName) {
     let ok = true;
-    let errMsg = '';
+    let errMsg = "";
 
-    if (userName === '') {
+    if (userName === "") {
       // 不带cookie
       if (nickName === undefined) {
         // 错误情况1：不带nickname，这是第一次加载，还没有注册
         ok = false;
-        errMsg += '没有注册';
+        errMsg += "没有注册";
       } else {
         // 带nickname来注册
-        userName = this.userNamesPool.pop() ?? '';
-        if (userName === '') {
+        userName = this.userNamesPool.pop() ?? "";
+        if (userName === "") {
           // 错误情况2：人数已满
           ok = false;
-          errMsg += '人数已满';
+          errMsg += "人数已满";
         }
       }
     }
@@ -72,7 +72,7 @@ class UserNames {
         this._addOnlineUser(userName);
       } else {
         // 注册
-        if (nickName === '') {
+        if (nickName === "") {
           nickName = userName;
         }
         this._setNickName(userName, nickName);

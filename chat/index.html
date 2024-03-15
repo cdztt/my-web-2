@@ -1,100 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>个人程序开发记录分享 - chat</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="data:," />
-  <title>个人程序开发记录分享 - chat</title>
-</head>
+  <body>
+    <div id="home"></div>
 
-<body>
-  <div id="home"></div>
-
-  <script type="importmap">
-    {
-      "imports":{
-        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
       }
+    </script>
+
+    <script type="module">
+      import { createApp } from "vue";
+
+      import(`${window.base}/Home.js`).then((m) => {
+        const home = createApp(m.default);
+        home.config.globalProperties.window = window;
+        home.mount("#home");
+      });
+    </script>
+
+    <script>
+      window.addEventListener("beforeunload", () => {
+        fetch(`${window.base}/api/offline`);
+      });
+    </script>
+  </body>
+
+  <style>
+    #home {
+      width: 50vw;
+      margin: 0 auto;
     }
-  </script>
 
-  <script type="module">
-    import { createApp } from 'vue'
+    .headline {
+      height: 10vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
 
-    import(`${window.base}/Home.js`).then(m => {
-      const home = createApp(m.default)
-      home.config.globalProperties.window = window
-      home.mount('#home')
+    .headline > div:nth-child(1) {
+      text-align: center;
+    }
 
-    })
-  </script>
+    .headline > div:nth-child(2) {
+      display: flex;
+      justify-content: space-between;
+    }
 
-  <script>
-    window.addEventListener('beforeunload', () => {
-      fetch(`${window.base}/api/offline`)
-    })
-  </script>
-</body>
+    .main {
+      display: flex;
+    }
 
-<style>
-  #home {
-    width: 50vw;
-    margin: 0 auto;
-  }
+    .online-list {
+      flex: 1;
+    }
 
-  .headline {
-    height: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
+    .online-list.dialog {
+      margin-left: 10px;
+      text-wrap: nowrap;
+    }
 
-  .headline>div:nth-child(1) {
-    text-align: center;
-  }
+    .chat {
+      flex: 4;
+    }
 
-  .headline>div:nth-child(2) {
-    display: flex;
-    justify-content: space-between;
-  }
+    .dialog {
+      height: 65vh;
+      padding: 0 5px;
+      margin: 5px 0;
+      border: 1px solid gray;
+      border-radius: 3px;
+      overflow-y: scroll;
+      word-wrap: break-word;
+    }
 
-  .main {
-    display: flex;
-  }
+    .composition {
+      height: 15vh;
+      display: flex;
+    }
 
-  .online-list {
-    flex: 1;
-  }
-
-  .online-list.dialog {
-    margin-left: 10px;
-    text-wrap: nowrap;
-  }
-
-  .chat {
-    flex: 4;
-  }
-
-  .dialog {
-    height: 65vh;
-    padding: 0 5px;
-    margin: 5px 0;
-    border: 1px solid gray;
-    border-radius: 3px;
-    overflow-y: scroll;
-    word-wrap: break-word;
-  }
-
-  .composition {
-    height: 15vh;
-    display: flex;
-  }
-
-  textarea {
-    resize: none;
-    flex: 1;
-  }
-</style>
-
+    textarea {
+      resize: none;
+      flex: 1;
+    }
+  </style>
 </html>

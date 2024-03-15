@@ -1,32 +1,32 @@
-import { defineCustomElement, nextTick, onMounted, ref, watch } from 'vue';
-import BeiAn from './BeiAn.js';
-import DialogP from './DialogP.js';
+import { defineCustomElement, nextTick, onMounted, ref, watch } from "vue";
+import BeiAn from "./BeiAn.js";
+import DialogP from "./DialogP.js";
 
-customElements.define('dialog-p', defineCustomElement(DialogP));
-customElements.define('bei-an', defineCustomElement(BeiAn));
+customElements.define("dialog-p", defineCustomElement(DialogP));
+customElements.define("bei-an", defineCustomElement(BeiAn));
 
 function getParagraphs() {
-  let p = window.sessionStorage.getItem('paragraphs');
+  let p = window.sessionStorage.getItem("paragraphs");
   if (p === null) {
-    window.sessionStorage.setItem('paragraphs', JSON.stringify([]));
-    p = window.sessionStorage.getItem('paragraphs');
+    window.sessionStorage.setItem("paragraphs", JSON.stringify([]));
+    p = window.sessionStorage.getItem("paragraphs");
   }
   return JSON.parse(p);
 }
 
 export default {
   setup() {
-    const text = ref('');
+    const text = ref("");
     const ws = ref(null);
     const paragraphs = ref(getParagraphs());
     const dialogRef = ref(null);
     const onlineUsers = ref([]);
 
-    const hasLogin = window.userName !== '';
-    const myName = hasLogin ? window.nickName : '未登录';
+    const hasLogin = window.userName !== "";
+    const myName = hasLogin ? window.nickName : "未登录";
 
-    const protocol = window.protocol === 'http' ? 'ws' : 'wss';
-    const host = window.env === 'dev' ? 'localhost' : 'hueyond.run';
+    const protocol = window.protocol === "http" ? "ws" : "wss";
+    const host = window.env === "dev" ? "localhost" : "hueyond.run";
     const base = window.base;
     const url = `${protocol}://${host}${base}`;
 
@@ -36,7 +36,7 @@ export default {
 
         ws.value.onopen = () => {
           const msg = {
-            type: 'state',
+            type: "state",
           };
           ws.value.send(JSON.stringify(msg));
         };
@@ -56,14 +56,14 @@ export default {
           } else {
             // dialog
             paragraphs.value.push({
-              fromWho: userName === window.userName ? '我' : nickName,
+              fromWho: userName === window.userName ? "我" : nickName,
               text,
               createdAt,
             });
 
             window.sessionStorage.setItem(
-              'paragraphs',
-              JSON.stringify(paragraphs.value)
+              "paragraphs",
+              JSON.stringify(paragraphs.value),
             );
           }
         };
@@ -83,7 +83,7 @@ export default {
           await nextTick();
           dialogRef.value.scrollTop = dialogRef.value.scrollHeight;
         }
-      }
+      },
     );
 
     function gotoRegister() {
@@ -93,14 +93,14 @@ export default {
     function send() {
       if (ws.value !== null) {
         const msg = {
-          type: 'dialog',
+          type: "dialog",
           nickName: window.nickName,
           userName: window.userName,
           text: text.value,
           createdAt: Date.now(),
         };
         ws.value.send(JSON.stringify(msg));
-        text.value = '';
+        text.value = "";
       }
     }
 
@@ -108,7 +108,7 @@ export default {
       if (ws.value !== null) {
         await fetch(`${base}/api/logout`);
         const msg = {
-          type: 'state',
+          type: "state",
         };
         ws.value.send(JSON.stringify(msg));
         window.location.reload();

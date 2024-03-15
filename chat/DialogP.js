@@ -13,9 +13,9 @@ export default {
     const displayedTime = `( ${time.toLocaleTimeString()} ${time.toLocaleDateString()} )`;
 
     const textWithPadding = text
-      .split('\n')
+      .split("\n")
       .map((sentence) => `\x20\x20${sentence}`)
-      .join('\n');
+      .join("\n");
 
     return {
       name,
