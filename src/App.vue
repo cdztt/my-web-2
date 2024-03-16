@@ -1,6 +1,7 @@
 <script setup>
-import { RouterView } from "vue-router";
-import Sider from "./views/Sider.vue";
+import { RouterView } from 'vue-router';
+import Sider from './views/Sider.vue';
+import BeiAn from './components/BeiAn.vue';
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import Sider from "./views/Sider.vue";
       <RouterView />
     </div>
   </div>
+  <BeiAn></BeiAn>
 </template>
 
 <style scoped lang="less">

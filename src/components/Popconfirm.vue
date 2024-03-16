@@ -1,15 +1,15 @@
 <script setup>
-import { computed, inject, nextTick, ref, watch } from "vue";
+import { computed, inject, nextTick, ref, watch } from 'vue';
 
-const { x } = inject("popconfirm-x"); // viewport偏移
-const { y } = inject("popconfirm-y");
-const { targetWidth } = inject("popconfirm-targetwidth"); // 触发mouseenter的元素
-const { targetHeight } = inject("popconfirm-targetheight");
-const { placement } = inject("popconfirm-placement");
-const { content } = inject("popconfirm-content");
-const { showed } = inject("popconfirm-showed");
-const popconfirm = inject("popconfirm");
-const selfRef = inject("popconfirm-self");
+const { x } = inject('popconfirm-x'); // viewport偏移
+const { y } = inject('popconfirm-y');
+const { targetWidth } = inject('popconfirm-targetwidth'); // 触发mouseenter的元素
+const { targetHeight } = inject('popconfirm-targetheight');
+const { placement } = inject('popconfirm-placement');
+const { content } = inject('popconfirm-content');
+const { showed } = inject('popconfirm-showed');
+const popconfirm = inject('popconfirm');
+const selfRef = inject('popconfirm-self');
 
 const selfHeight = ref(0); // 自己
 const selfWidth = ref(0);
@@ -17,43 +17,43 @@ const selfWidth = ref(0);
 const style = computed(() => {
   let top, left;
   switch (placement.value) {
-    case "topleft":
+    case 'topleft':
       top = y.value - selfHeight.value;
       left = x.value - selfWidth.value;
       break;
-    case "top":
+    case 'top':
       top = y.value - selfHeight.value;
       left = x.value - (selfWidth.value - targetWidth.value) / 2;
       break;
-    case "topright":
+    case 'topright':
       top = y.value - selfHeight.value;
       left = x.value + targetWidth.value;
       break;
-    case "right":
+    case 'right':
       top = y.value - (selfHeight.value - targetHeight.value) / 2;
       left = x.value + targetWidth.value;
       break;
-    case "bottomright":
+    case 'bottomright':
       top = y.value + targetHeight.value;
       left = x.value + targetWidth.value;
       break;
-    case "bottom":
+    case 'bottom':
       top = y.value + targetHeight.value;
       left = x.value - (selfWidth.value - targetWidth.value) / 2;
       break;
-    case "bottomleft":
+    case 'bottomleft':
       top = y.value + targetHeight.value;
       left = x.value - selfWidth.value;
       break;
-    case "left":
+    case 'left':
       top = y.value - (selfHeight.value - targetHeight.value) / 2;
       left = x.value - selfWidth.value;
       break;
   }
 
   return {
-    top: top + "px",
-    left: left + "px",
+    top: top + 'px',
+    left: left + 'px',
   };
 });
 
@@ -66,11 +66,11 @@ watch(showed, async (currentValue) => {
   }
 });
 const handleConfirm = () => {
-  popconfirm.result.value = "confirm";
+  popconfirm.result.value = 'confirm';
   popconfirm.close();
 };
 const handleCancel = () => {
-  popconfirm.result.value = "cancel";
+  popconfirm.result.value = 'cancel';
   popconfirm.close();
 };
 </script>
@@ -82,7 +82,6 @@ const handleCancel = () => {
     v-show="showed"
   >
     <div class="popconfirm-text">
-      <span> &nbsp;!&nbsp;!&nbsp; </span>
       {{ content }}
     </div>
     <div class="popconfirm-button">
@@ -100,8 +99,8 @@ const handleCancel = () => {
   border-radius: 3px;
   padding: 0.2rem 0.4rem;
   &-text {
-    font-size: 1.1rem;
-    margin: 0.4rem 0;
+    font-size: 1rem;
+    margin: 0.4rem 0.4rem;
   }
   &-button {
     display: grid;

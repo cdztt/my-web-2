@@ -1,36 +1,37 @@
 <script setup>
-import Calendar from "@cdztt/calendar-vue";
-import "@cdztt/calendar-vue/dist/style.css";
-import { inject, ref, toRaw, watch } from "vue";
+import Calendar from '@cdztt/calendar-vue';
+import '@cdztt/calendar-vue/dist/style.css';
+import { inject, ref, shallowRef, watch } from 'vue';
+import useTodoItems from '../store/todoItems.js';
 
-const emit = defineEmits(["addTask"]);
+const emit = defineEmits(['addTask']);
 
-const PLACEHOLDER = "添加任务";
-const taskText = ref(PLACEHOLDER);
-const taskDeadline = ref();
+const todoItems = useTodoItems();
 
-const tooltip = inject("tooltip");
-const popconfirm = inject("popconfirm");
+const taskText = ref('');
+const taskDeadline = shallowRef(null);
 
-const handleInputBlur = () => {
-  if (taskText.value === "") {
-    taskText.value = PLACEHOLDER;
-  }
-};
-const handleInputFocus = () => {
-  if (taskText.value === PLACEHOLDER) {
-    taskText.value = "";
-  }
-};
+const tooltip = inject('tooltip');
+const popconfirm = inject('popconfirm');
+
 const handleAddTask = () => {
-  console.log(taskText.value, toRaw(taskDeadline.value));
+  const taskContent = taskText.value.trim();
+
+  if (taskContent !== '') {
+    todoItems.addItem(taskContent, taskDeadline.value);
+    taskDeadline.value = null;
+  }
+
+  taskText.value = '';
 };
+
 const handleCalendarSave = (e) => {
   taskDeadline.value = e;
 };
+
 watch(popconfirm.result, (result) => {
-  if (result === "confirm") {
-    taskDeadline.value = undefined;
+  if (result === 'confirm') {
+    taskDeadline.value = null;
   }
 });
 </script>
@@ -47,26 +48,18 @@ watch(popconfirm.result, (result) => {
       type="text"
       class="todo-addtask-input-text"
       v-model="taskText"
-      @blur="handleInputBlur"
-      @focus="handleInputFocus"
+      placeholder="添加任务"
     />
-    <span
-      class="todo-addtask-input-options"
-      v-show="taskText && taskText !== PLACEHOLDER"
-    >
-      <Calendar placement="right" @onSave="handleCalendarSave">
+    <span class="todo-addtask-input-options">
+      <Calendar
+        placement="topleft"
+        color="orange"
+        @onSave="handleCalendarSave"
+      >
         <span @mouseenter="tooltip.config({ content: '添加截止日期' }).popup">
           📅
         </span>
       </Calendar>
-      <!-- <Calendar
-    placement="top"
-    @onSave="(e) => console.log(e)"
-    color="blue"
-    class="calendar"
-  >
-    📅hello world!
-  </Calendar> -->
       <span
         v-show="taskDeadline"
         @mouseenter="tooltip.config({ content: '点击删除' }).popup"
@@ -74,7 +67,7 @@ watch(popconfirm.result, (result) => {
         class="todo-addtask-input-options-deadline"
       >
         {{
-          `${taskDeadline?.month}月${taskDeadline?.date}日, 星期${taskDeadline?.day}`
+          `${taskDeadline?.month}月${taskDeadline?.date}日, 星期${taskDeadline?.dayZh}`
         }}
         <br />
         {{ `${taskDeadline?.hours}点${taskDeadline?.minutes}分` }}

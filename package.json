@@ -12,7 +12,7 @@
     "starthttps": "cross-env NODE_ENV=prod NODE_PROTOCOL=https nodemon --openssl-legacy-provider ./index.js"
   },
   "dependencies": {
-    "@cdztt/calendar-vue": "^1.0.12",
+    "@cdztt/calendar-vue": "^1.0.14",
     "axios": "^0.27.2",
     "pinia": "^2.0.21",
     "vue": "^3.2.37",

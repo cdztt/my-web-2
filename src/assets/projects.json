@@ -2,7 +2,7 @@
   {
     "name": "my-web",
     "description": "个人主页",
-    "code": "https://github.com/enoughtallisymcrift/my-web",
+    "code": "https://github.com/cdztt/my-web",
     "libraries": [
       "react",
       "redux",
@@ -18,29 +18,42 @@
   {
     "name": "aUniappProject",
     "description": "体育测试类安卓app",
-    "code": "https://github.com/enoughtallisymcrift/aUniappProject",
-    "libraries": ["uniapp", "vue2", "sqlite"],
+    "code": "https://github.com/cdztt/aUniappProject",
+    "libraries": [
+      "uniapp",
+      "vue2",
+      "sqlite"
+    ],
     "details": "这是一个使用uniapp开发的体育测试类app，数据展示相对简单，但测试流程相对复杂（输入用户信息；开始、中止、完成测试；数据处理保存输出等）。该app不需要http请求数据，但要在WiFi提供的局域网里与单片机进行tcp通信。"
   },
   {
     "name": "anElectronProject",
     "description": "桌面应用",
-    "code": "https://github.com/enoughtallisymcrift/anElectronProject",
-    "libraries": ["electron", "vue2", "element ui", "node"],
+    "code": "https://github.com/cdztt/anElectronProject",
+    "libraries": [
+      "electron",
+      "vue2",
+      "element ui",
+      "node"
+    ],
     "details": "这是一个桌面程序，使用electron + vue2 + element构建。"
   },
   {
     "name": "anArduinoProject",
     "description": "短跑测试仪硬件程序",
-    "code": "https://github.com/enoughtallisymcrift/anArduinoProject",
-    "libraries": ["arduino"],
+    "code": "https://github.com/cdztt/anArduinoProject",
+    "libraries": [
+      "arduino"
+    ],
     "details": "一个嵌入式软件开发项目，使用了流行的个人电子制作开发框架arduino。"
   },
   {
     "name": "monocraft",
     "description": "VSCode主题",
-    "code": "https://github.com/enoughtallisymcrift/monocraft-VSCodeColorTheme",
-    "libraries": ["VSCode"],
+    "code": "https://github.com/cdztt/monocraft-VSCodeColorTheme",
+    "libraries": [
+      "VSCode"
+    ],
     "details": "一款自定义VSCode主题，在内置主题Monokai的基础上更改，欢迎使用！"
   }
 ]

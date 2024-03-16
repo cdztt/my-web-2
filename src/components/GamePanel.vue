@@ -1,6 +1,6 @@
 <script setup>
-defineProps(["mode", "level", "isDisabled"]);
-defineEmits(["update:mode", "update:level", "game-start"]);
+defineProps(['mode', 'level', 'isDisabled']);
+defineEmits(['update:mode', 'update:level', 'game-start']);
 </script>
 <template>
   <div class="gamepanel">
@@ -55,7 +55,7 @@ defineEmits(["update:mode", "update:level", "game-start"]);
       </label>
     </div>
 
-    <div>
+    <div class="gamepanel-start">
       <button @click="$emit('game-start')">开始</button>
     </div>
   </div>
@@ -67,6 +67,10 @@ defineEmits(["update:mode", "update:level", "game-start"]);
   }
   label {
     margin-right: 1.5rem;
+  }
+  &-start {
+    margin-top: 2rem;
+    text-align: center;
   }
 }
 </style>

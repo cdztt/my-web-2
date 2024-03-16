@@ -1,9 +1,9 @@
 <script setup>
-import { ref } from "vue";
-import TodoMain from "../components/TodoMain.vue";
-import TodoMenu from "../components/TodoMenu.vue";
+import { ref } from 'vue';
+import TodoMain from '../components/TodoMain.vue';
+import TodoMenu from '../components/TodoMenu.vue';
 
-const filterType = ref("today");
+const filterType = ref('today');
 </script>
 <template>
   <div class="todo">
@@ -22,11 +22,8 @@ const filterType = ref("today");
   grid-template-columns: minmax(150px, 1fr) 4fr;
   &-left {
     padding-right: 1rem;
-    //border: 1px solid gray;
   }
   &-main {
-    //height: inherit;
-    //overflow-y: scroll;
   }
 }
 </style>

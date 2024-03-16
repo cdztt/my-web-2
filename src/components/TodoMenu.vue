@@ -1,14 +1,14 @@
 <script setup>
-import { inject, nextTick, ref, watch } from "vue";
+import { inject, nextTick, ref, watch } from 'vue';
 
-const props = defineProps(["filterType"]);
-const emit = defineEmits(["update:filterType"]);
+const props = defineProps(['filterType']);
+const emit = defineEmits(['update:filterType']);
 
-const todoLists = inject("todoLists");
-const tooltip = inject("tooltip");
+const todoLists = inject('todoLists');
+const tooltip = inject('tooltip');
 
 const handleClick = (filterType) => {
-  emit("update:filterType", filterType);
+  emit('update:filterType', filterType);
 };
 
 const listsRef = ref();
@@ -19,9 +19,9 @@ const handleAddList = () => {
   count.value += 1;
   todoLists.actions.add({
     title: `无标题列表 ${count.value}`,
-    emoji: "🗒",
+    emoji: '🗒',
     filterType: Date.now().toString(),
-    type: "list",
+    type: 'list',
   });
 };
 
@@ -29,7 +29,9 @@ const handleBlur = async (e) => {
   todoLists.actions.updateLastListTitle(e.target.value);
   await nextTick();
   await nextTick(); //必须用2次nextTick，比watch的nextTick多一次，确保在watch之后执行
-  lastInputRef.value.disabled = true;
+  const span = document.createElement('span');
+  span.textContent = e.target.value;
+  lastInputRef.value.parentNode.replaceChild(span, lastInputRef.value);
 };
 
 watch(
@@ -40,20 +42,23 @@ watch(
   async ([newLength], [oldLength]) => {
     await nextTick();
     lastInputRef.value = Array.from(
-      listsRef.value.childNodes.values(),
+      listsRef.value.childNodes.values()
     ).findLast((node) => node.nodeType === 1).lastChild;
 
     if (newLength !== oldLength) {
       lastInputRef.value.focus();
       lastInputRef.value.select();
-      lastInputRef.value.addEventListener("blur", handleBlur, { once: true });
+      lastInputRef.value.addEventListener('blur', handleBlur, { once: true });
     }
-  },
+  }
 );
 </script>
 <template>
   <div class="todomenu">
-    <div class="todomenu-lists" ref="listsRef">
+    <div
+      class="todomenu-lists"
+      ref="listsRef"
+    >
       <div
         v-for="({ title, emoji, filterType, type }, index) of todoLists.lists"
         :key="title"
@@ -83,7 +88,11 @@ watch(
           </span>
         </template>
         <template v-else>
-          <input type="text" :value="title" class="todomenu-lists-item-input" />
+          <input
+            type="text"
+            :value="title"
+            class="todomenu-lists-item-input"
+          />
         </template>
       </div>
     </div>

@@ -1,54 +1,54 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-import FileList from "../components/FileList.vue";
-import FileViewer from "../components/FileViewer.vue";
-import Null from "../components/Null.vue";
-import About from "../views/About.vue";
-import Blog from "../views/Blog.vue";
-import Game from "../views/Game.vue";
-import Todo from "../views/Todo.vue";
+import { createRouter, createWebHashHistory } from 'vue-router';
+import FileList from '../components/FileList.vue';
+import FileViewer from '../components/FileViewer.vue';
+import Null from '../components/Null.vue';
+import About from '../views/About.vue';
+import Blog from '../views/Blog.vue';
+import Game from '../views/Game.vue';
+import Todo from '../views/Todo.vue';
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     component: About,
     meta: {
-      showedName: "首页",
+      showedName: '首页',
     },
   },
   {
-    path: "/blog",
+    path: '/blog',
     component: Blog,
     meta: {
-      showedName: "博客",
+      showedName: '博客',
     },
     children: [
       {
-        path: "",
+        path: '',
         component: Null,
       },
       {
-        path: ":subjectName",
+        path: ':subjectName',
         component: FileList,
         props: true,
       },
       {
-        path: ":subjectName/:fileName",
+        path: ':subjectName/:fileName',
         component: FileViewer,
       },
     ],
   },
   {
-    path: "/game",
-    component: Game,
+    path: '/todo',
+    component: Todo,
     meta: {
-      showedName: "井字棋",
+      showedName: '待办',
     },
   },
   {
-    path: "/todo",
-    component: Todo,
+    path: '/game',
+    component: Game,
     meta: {
-      showedName: "待办",
+      showedName: '井字棋',
     },
   },
 ];

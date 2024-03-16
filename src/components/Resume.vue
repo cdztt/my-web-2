@@ -3,12 +3,16 @@
 <template>
   <div class="resume">
     <div class="resume-avatar">
-      <!-- <img src='../assets/avatar-transparent.png' alt="avatar" :width="60" /> -->
+      <img
+        src="../assets/avatar-transparent.png"
+        alt="avatar"
+        :width="60"
+      />
     </div>
 
     <div>
       <a
-        href="https://github.com/enoughtallisymcrift"
+        href="https://github.com/cdztt"
         target="_blank"
         rel="noreferrer"
       >

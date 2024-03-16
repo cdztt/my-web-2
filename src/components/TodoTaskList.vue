@@ -1,11 +1,28 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from 'vue';
 
+const props = defineProps(['data']);
 const checkingLine = ref(null);
-const props = defineProps(["data"]);
+
+const deadline = computed(() => {
+  return props.data.map((item) => {
+    if (item.deadline) {
+      const {
+        deadline: { year, month, date, dayZh, hours, minutes },
+      } = item;
+      return `截止日期：${month}月${date}日星期${dayZh}，${hours}点${minutes}分，${year}年`;
+    } else {
+      return '';
+    }
+  });
+});
 </script>
 <template>
-  <div v-for="(item, index) of props.data" :key="item.id" class="todo-tasklist">
+  <div
+    v-for="({ id, taskContent, list }, index) of props.data"
+    :key="id"
+    class="todo-tasklist"
+  >
     <div class="todo-tasklist-content">
       <span class="todo-tasklist-content-finish none-user-select">
         <span
@@ -23,10 +40,13 @@ const props = defineProps(["data"]);
         </span>
       </span>
       <span class="todo-tasklist-content-text">
-        {{ item.taskContent }}
+        {{ taskContent }}
       </span>
     </div>
-    <div class="todo-tasklist-footer">任务</div>
+    <div class="todo-tasklist-footer">
+      <span>{{ list }}</span>
+      <span>{{ deadline[index] }}</span>
+    </div>
   </div>
 </template>
 <style scoped lang="less">
@@ -55,12 +75,14 @@ const props = defineProps(["data"]);
       }
     }
     &-text {
-      //margin-left: 0.5rem;
+      font-size: 1.2rem;
     }
   }
   &-footer {
-    margin-left: @left-width;
+    margin: 0 @left-width;
     font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>

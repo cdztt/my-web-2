@@ -1,46 +1,46 @@
 <script setup>
-import { computed, inject, ref, watchEffect } from "vue";
-import GameBoard from "../components/GameBoard.vue";
-import GamePanel from "../components/GamePanel.vue";
-import Ai from "../utils/game/Ai.js";
-import Game from "../utils/game/Game.js";
+import { computed, inject, ref, watchEffect } from 'vue';
+import GameBoard from '../components/GameBoard.vue';
+import GamePanel from '../components/GamePanel.vue';
+import Ai from '../utils/game/Ai.js';
+import Game from '../utils/game/Game.js';
 
-const mode = ref("1");
-const level = ref("easy");
+const mode = ref('1');
+const level = ref('easy');
 const game = ref(new Game(mode.value));
 const ai = ref(new Ai(level.value));
 const step = ref(0);
 const active = ref(false);
 
-const { messageShow } = inject("message-show");
+const { messageShow } = inject('message-show');
 
 const snapshot = computed(() => game.value.getHistorySnapshot(step.value));
 
 const dropPiece = (x, y) => {
   if (active.value) {
     const result = game.value.judgeAndRecord(x, y);
-    if (!result.done && result.info === "ignore") return;
+    if (!result.done && result.info === 'ignore') return;
 
-    if (mode !== "0") {
+    if (mode !== '0') {
       //非练习模式才用ai
       ai.value.input(
-        "" + x + y,
-        game.value.getCurrentPlayer().getOrder().toString(),
+        '' + x + y,
+        game.value.getCurrentPlayer().getOrder().toString()
       );
     }
     step.value++;
     if (!result.done) return;
 
-    let msg = "";
-    if (result.info === "draw") {
-      msg += "平局";
+    let msg = '';
+    if (result.info === 'draw') {
+      msg += '平局';
     } else {
       msg += `${result.info}赢了！`;
     }
 
     messageShow({
-      type: "info",
-      title: "游戏结果",
+      type: 'info',
+      title: '游戏结果',
       content: msg,
     });
 
@@ -52,13 +52,13 @@ const aiDropPiece = () => {
   const point = ai.value.output();
   if (point) {
     //当最后一个格子走完，point是undefined，忽略
-    const [x, y] = point.split("").map((el) => parseInt(el));
+    const [x, y] = point.split('').map((el) => parseInt(el));
     dropPiece(x, y);
   }
 };
 
 const youDropPiece = (x, y) => {
-  if (mode === "0" || (mode !== "0" && !game.value.isAiNext())) {
+  if (mode === '0' || (mode !== '0' && !game.value.isAiNext())) {
     dropPiece(x, y);
   }
 };
@@ -88,18 +88,18 @@ const gameStart = () => {
       @game-start="gameStart"
       :isDisabled="active"
     />
-    <GameBoard :snapshot="snapshot" @drop-piece="youDropPiece" />
+    <GameBoard
+      :snapshot="snapshot"
+      @drop-piece="youDropPiece"
+    />
   </div>
 </template>
 
 <style scoped lang="less">
 .game {
   display: grid;
-  //grid-template-columns: repeat(auto-fit, minmax(var(--gameboard-width), 1fr));
   gap: 3rem;
   justify-items: center;
-}
-.calendar {
-  border: 1px solid red;
+  margin: 2rem 0;
 }
 </style>

@@ -1,380 +1,21 @@
 <script setup>
-import { computed, inject } from "vue";
-import TodoAddTask from "./TodoAddTask.vue";
-import TodoTaskList from "./TodoTaskList.vue";
+import { storeToRefs } from 'pinia';
+import { computed, inject } from 'vue';
+import useTodoItems from '../store/todoItems.js';
+import TodoAddTask from './TodoAddTask.vue';
+import TodoTaskList from './TodoTaskList.vue';
 
-const props = defineProps(["filterType"]);
+const props = defineProps(['filterType']);
 
-const fakeData = [
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-    list: "任务",
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-];
-const fakeDataShort = [
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 1,
-    taskContent: "学习",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 2,
-    taskContent: "跑步",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-  {
-    id: 3,
-    taskContent: "看剧",
-    createdTime: 0,
-    important: false,
-    isFinished: false,
-    deadline: 0,
-  },
-];
+const todoItems = useTodoItems();
+const { tdItems } = storeToRefs(todoItems);
 
-const todoLists = inject("todoLists");
+const todoLists = inject('todoLists');
+
 const menuItem = computed(() =>
-  todoLists.lists.find((list) => list.filterType === props.filterType),
+  todoLists.lists.find((list) => list.filterType === props.filterType)
 );
+
 const today = computed(() => {
   const now = new Date();
   const year = now.getFullYear();
@@ -382,13 +23,13 @@ const today = computed(() => {
   const date = now.getDate();
   const day = now.getDay();
   const ZH_DAY_MAP = {
-    1: "一",
-    2: "二",
-    3: "三",
-    4: "四",
-    5: "五",
-    6: "六",
-    0: "日",
+    1: '一',
+    2: '二',
+    3: '三',
+    4: '四',
+    5: '五',
+    6: '六',
+    0: '日',
   };
   return `${year}年 ${month}月${date}日 星期${ZH_DAY_MAP[day]}`;
 });
@@ -401,14 +42,16 @@ const today = computed(() => {
         {{ menuItem.title }}
       </span>
       <span> ⋯ </span>
-      <div v-show="menuItem.filterType === 'today'" class="todomain-title-date">
+      <div
+        v-show="menuItem.filterType === 'today'"
+        class="todomain-title-date"
+      >
         {{ today }}
       </div>
     </div>
 
     <div class="todomain-list">
-      <TodoTaskList :data="fakeData" />
-      <!--<TodoTaskList :data="fakeDataShort"/>-->
+      <TodoTaskList :data="tdItems" />
     </div>
 
     <TodoAddTask class="todomain-addtask" />
