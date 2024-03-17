@@ -1,7 +1,7 @@
 <script setup>
-import { ref, watchEffect } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { menuItems } from "../router";
+import { ref, watchEffect } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { menuItems } from '../router';
 
 const router = useRouter();
 const route = useRoute();
@@ -27,6 +27,13 @@ const handleClick = (path) => {
     >
       {{ showedName }}
     </div>
+    <a
+      href="http://hueyond.run/chat"
+      target="_blank"
+      rel="noreferrer"
+    >
+      聊天室
+    </a>
   </div>
 </template>
 
@@ -38,7 +45,7 @@ const handleClick = (path) => {
 }
 
 #prefix {
-  content: "";
+  content: '';
   box-sizing: border-box;
   width: 6px;
   height: 1.5em;

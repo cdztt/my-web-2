@@ -1,18 +1,17 @@
 <script setup>
-import { computed, ref } from "vue";
-import list from "../assets/projects.json";
-import NavTab from "../components/NavTab.vue";
-import PersonalStatement from "../components/PersonalStatement.vue";
-import ProjectList from "../components/ProjectList.vue";
+import { computed, ref } from 'vue';
+import NavTab from '../components/NavTab.vue';
+import PersonalStatement from '../components/PersonalStatement.vue';
+import ProjectList from '../components/ProjectList.vue';
 
 const tabs = [
   {
-    tabName: "个人项目",
+    tabName: '个人项目',
     component: ProjectList,
-    props: { list },
+    props: {},
   },
   {
-    tabName: "个人说明",
+    tabName: '个人说明',
     component: PersonalStatement,
     props: {},
   },

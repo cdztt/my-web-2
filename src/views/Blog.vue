@@ -1,13 +1,13 @@
 <script setup>
-import { storeToRefs } from "pinia";
-import { onBeforeUnmount, ref, watchEffect } from "vue";
+import { storeToRefs } from 'pinia';
+import { onBeforeUnmount, ref, watchEffect } from 'vue';
 import {
-  onBeforeRouteUpdate,
   RouterView,
+  onBeforeRouteUpdate,
   useRoute,
   useRouter,
-} from "vue-router";
-import useBlogStore from "../store/blog.js";
+} from 'vue-router';
+import useBlogStore from '../store/blog.js';
 
 const blogStore = useBlogStore();
 const { subjects, firstSubjectName } = storeToRefs(blogStore);
@@ -16,18 +16,19 @@ const route = useRoute();
 const router = useRouter();
 
 const currentSubjectName = ref();
+
 watchEffect(
   () =>
     (currentSubjectName.value =
-      route.params.subjectName ?? firstSubjectName.value),
+      route.params.subjectName ?? firstSubjectName.value)
 );
 
 const controller = new AbortController();
 
 blogStore.$onAction(({ after }) => {
   after(() => {
-    if (route.path === "/blog" && !route.params.subjectName) {
-      router.replace(route.path + "/" + firstSubjectName.value);
+    if (route.path === '/blog' && !route.params.subjectName) {
+      router.replace(route.path + '/' + firstSubjectName.value);
     }
   });
 });
@@ -42,14 +43,14 @@ onBeforeRouteUpdate((to, from) => {
     if (!from.params.fileName) {
       return false;
     } else {
-      return { path: to.path + "/" + from.params.subjectName, replace: true };
+      return { path: to.path + '/' + from.params.subjectName, replace: true };
     }
   }
 });
 
 const handleSubjectClick = (name) => {
   currentSubjectName.value = name;
-  router.replace(route.matched[0].path + "/" + name);
+  router.replace(route.matched[0].path + '/' + name);
 };
 </script>
 
@@ -60,7 +61,11 @@ const handleSubjectClick = (name) => {
     </div>
 
     <div class="blog-sider">
-      <div v-for="[name, count] of subjects" :key="name" class="blog-subjects">
+      <div
+        v-for="[name, count] of subjects"
+        :key="name"
+        class="blog-subjects"
+      >
         <span
           :class="[
             'blog-subjects-name',

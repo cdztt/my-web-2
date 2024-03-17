@@ -1,14 +1,33 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watchEffect } from 'vue';
+import useResumeStore from '../store/resume';
 
-const { list } = defineProps(["list"]);
-const folded = ref(list.map(() => true));
+const resumeStore = useResumeStore();
+const projects = ref([]);
+const folded = ref();
+
+watchEffect(() => {
+  folded.value = projects.value.map(() => true);
+});
 
 const handleFold = (index) => (folded.value[index] = !folded.value[index]);
+
+resumeStore.$onAction(({ name, after }) => {
+  after((result) => {
+    if (name === 'getProjects') {
+      projects.value = result ?? [];
+    }
+  });
+});
+resumeStore.getProjects();
 </script>
 
 <template>
-  <div class="project" v-for="(project, index) of list" :key="project.name">
+  <div
+    class="project"
+    v-for="(project, index) of projects"
+    :key="project.name"
+  >
     <div class="title">
       {{ project.name }}
     </div>
@@ -17,13 +36,22 @@ const handleFold = (index) => (folded.value[index] = !folded.value[index]);
       <span class="description">
         {{ project.description }}
       </span>
-      <a class="code" :href="project.code" target="_blank" rel="noreferrer">
+      <a
+        class="code"
+        :href="project.code"
+        target="_blank"
+        rel="noreferrer"
+      >
         仓库
       </a>
     </div>
 
     <div class="libraries">
-      <span class="librarytag" v-for="lib of project.libraries" :key="lib">
+      <span
+        class="librarytag"
+        v-for="lib of project.libraries"
+        :key="lib"
+      >
         {{ lib }}
       </span>
     </div>
