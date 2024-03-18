@@ -19,6 +19,7 @@ const handleClick = (path) => {
 
 <template>
   <div class="menu">
+    <div>(Vue版)</div>
     <div
       v-for="{ path, showedName } of menuItems"
       :key="path"

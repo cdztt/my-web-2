@@ -28,9 +28,7 @@ resumeStore.getProjects();
     v-for="(project, index) of projects"
     :key="project.name"
   >
-    <div class="title">
-      {{ project.name }}
-    </div>
+    <div class="title">{{ index + 1 }}.&nbsp;&nbsp;{{ project.name }}</div>
 
     <div class="subtitle">
       <span class="description">
@@ -103,13 +101,17 @@ resumeStore.getProjects();
       border: 1px dashed gray;
       border-radius: 5px;
       padding: 0 0.3rem;
-      margin: 0.2rem 0.5rem 0.2rem 0;
+      margin: 0.2rem 0.8rem 0.2rem 0;
     }
   }
 
   .more {
-    font-size: 1.1em;
+    font-size: 1em;
+    line-height: 1.5;
     margin-top: 0.5rem;
+    a {
+      cursor: default;
+    }
   }
 }
 </style>

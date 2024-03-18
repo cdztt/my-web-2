@@ -11,7 +11,7 @@ const tabs = [
     props: {},
   },
   {
-    tabName: '个人说明',
+    tabName: '个人技能',
     component: PersonalStatement,
     props: {},
   },

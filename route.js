@@ -59,9 +59,16 @@ async function onRequest(req, res) {
       filePath = join(__dirname, 'dist', url);
     }
 
-    const content = await readFile(filePath);
-    res.writeHead(200, { 'Content-Type': `${mime[assetType]}; charset=utf-8` });
-    res.end(content);
+    try {
+      const content = await readFile(filePath);
+      res.writeHead(200, {
+        'Content-Type': `${mime[assetType]}; charset=utf-8`,
+      });
+      res.end(content);
+    } catch {
+      res.writeHead(500);
+      res.end();
+    }
   } else if (/^\/?$/.test(url)) {
     render('/dist/index', res);
   } else if (new RegExp(`^${BASE}/?$`).test(url)) {
