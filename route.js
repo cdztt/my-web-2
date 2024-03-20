@@ -66,11 +66,8 @@ async function onRequest(req, res) {
       });
       res.end(content);
     } catch {
-      req.destroy();
-      // console.log('no file');
-      // res.writeHead(404);
-      // res.writeHead(500);
-      // res.end();
+      res.writeHead(404);
+      res.end();
     }
   } else if (/^\/?$/.test(url)) {
     render('/dist/index', res);
@@ -125,6 +122,9 @@ async function onRequest(req, res) {
       `userName=${userName}; HttpOnly; Path=/chat; SameSite=Strict`,
     ]);
     res.writeHead(200);
+    res.end();
+  } else {
+    res.writeHead(404);
     res.end();
   }
 }
