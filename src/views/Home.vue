@@ -482,9 +482,48 @@
         </svg>
       </div>
     </div>
+
     <div>
-      如果聊天室网页打不开（ Cannot GET /chat ），确认地址栏必须是 http 。目前
-      IOS 端的浏览器打不开聊天室网页。
+      <p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          viewBox="0 0 48 48"
+        >
+          <g
+            fill="none"
+            stroke="currentColor"
+            stroke-width="4"
+          >
+            <path
+              stroke-linejoin="round"
+              d="M24 5L2 43h44z"
+              clip-rule="evenodd"
+            />
+            <path
+              stroke-linecap="round"
+              d="M24 35v1m0-17l.008 10"
+            />
+          </g>
+        </svg>
+        如果聊天室网页打不开（ Cannot GET /chat ），确认地址栏必须是 http 。
+      </p>
+
+      <p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          viewBox="0 0 256 256"
+        >
+          <path
+            fill="currentColor"
+            d="M144 92a12 12 0 1 1 12 12a12 12 0 0 1-12-12m-44-12a12 12 0 1 0 12 12a12 12 0 0 0-12-12m116 64a87.76 87.76 0 0 1-3 23l22.24 9.72A8 8 0 0 1 232 192a7.89 7.89 0 0 1-3.2-.67L207.38 182a88 88 0 0 1-158.76 0l-21.42 9.33a7.89 7.89 0 0 1-3.2.67a8 8 0 0 1-3.2-15.33L43 167a87.76 87.76 0 0 1-3-23v-8H16a8 8 0 0 1 0-16h24v-8a87.76 87.76 0 0 1 3-23l-22.2-9.67a8 8 0 1 1 6.4-14.66L48.62 74a88 88 0 0 1 158.76 0l21.42-9.36a8 8 0 0 1 6.4 14.66L213 89.05a87.76 87.76 0 0 1 3 23v8h24a8 8 0 0 1 0 16h-24ZM56 120h144v-8a72 72 0 0 0-144 0Zm64 95.54V136H56v8a72.08 72.08 0 0 0 64 71.54M200 144v-8h-64v79.54A72.08 72.08 0 0 0 200 144"
+          />
+        </svg>
+        IOS 端的浏览器打不开聊天室网页。
+      </p>
     </div>
   </div>
 </template>
@@ -496,6 +535,8 @@
     display: grid;
     grid-template-rows: repeat(5, 1fr);
     grid-template-columns: repeat(9, 1fr);
+    text-align: center;
+    margin: 1rem 0;
   }
 
   &-icon {
