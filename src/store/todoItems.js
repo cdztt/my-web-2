@@ -14,7 +14,7 @@ export default defineStore('todoItems', () => {
     },
     {
       id: 2,
-      taskContent: 'To Do 之于前端',
+      taskContent: '学习',
       createdTime: null,
       important: false,
       isFinished: false,
@@ -23,7 +23,34 @@ export default defineStore('todoItems', () => {
     },
     {
       id: 3,
-      taskContent: '就像鸡蛋之于达芬奇',
+      taskContent: '学习',
+      createdTime: null,
+      important: false,
+      isFinished: false,
+      deadline: null,
+      list: '任务',
+    },
+    {
+      id: 4,
+      taskContent: '学习',
+      createdTime: null,
+      important: false,
+      isFinished: false,
+      deadline: null,
+      list: '任务',
+    },
+    {
+      id: 5,
+      taskContent: '学习',
+      createdTime: null,
+      important: false,
+      isFinished: false,
+      deadline: null,
+      list: '任务',
+    },
+    {
+      id: 6,
+      taskContent: '学习',
       createdTime: null,
       important: false,
       isFinished: false,
@@ -33,7 +60,7 @@ export default defineStore('todoItems', () => {
   ];
 
   const tdItems = ref(initData);
-  const count = ref(3);
+  const count = ref(initData.length);
 
   const addItem = (taskContent, deadline) => {
     const item = {

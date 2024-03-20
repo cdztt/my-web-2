@@ -111,7 +111,7 @@ watch(
 .todomenu {
   height: var(--main-fit-height);
   display: grid;
-  grid-template-rows: 1fr 80px;
+  grid-template-rows: 1fr 120px;
   &-lists {
     overflow-y: scroll;
     &-item {
@@ -151,7 +151,7 @@ watch(
     }
   }
   &-new {
-    margin-top: auto;
+    margin: auto 0;
     border: 2px solid gray;
     border-radius: 5px;
     display: grid;

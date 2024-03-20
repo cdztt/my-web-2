@@ -1,9 +1,12 @@
 <script setup>
+import { storeToRefs } from 'pinia';
 import { ref, watchEffect } from 'vue';
 import useResumeStore from '../store/resume';
 
 const resumeStore = useResumeStore();
-const projects = ref([]);
+const { projects } = storeToRefs(resumeStore);
+
+const loaded = ref(false);
 const folded = ref();
 
 watchEffect(() => {
@@ -13,9 +16,9 @@ watchEffect(() => {
 const handleFold = (index) => (folded.value[index] = !folded.value[index]);
 
 resumeStore.$onAction(({ name, after }) => {
-  after((result) => {
+  after(() => {
     if (name === 'getProjects') {
-      projects.value = result ?? [];
+      loaded.value = true;
     }
   });
 });
@@ -23,49 +26,52 @@ resumeStore.getProjects();
 </script>
 
 <template>
-  <div
-    class="project"
-    v-for="(project, index) of projects"
-    :key="project.name"
-  >
-    <div class="title">{{ index + 1 }}.&nbsp;&nbsp;{{ project.name }}</div>
+  <template v-if="!loaded">加载中……</template>
+  <template v-else>
+    <div
+      class="project"
+      v-for="(project, index) of projects"
+      :key="project.name"
+    >
+      <div class="title">{{ index + 1 }}.&nbsp;&nbsp;{{ project.name }}</div>
 
-    <div class="subtitle">
-      <span class="description">
-        {{ project.description }}
-      </span>
-      <a
-        class="code"
-        :href="project.code"
-        target="_blank"
-        rel="noreferrer"
-      >
-        仓库
-      </a>
-    </div>
+      <div class="subtitle">
+        <span class="description">
+          {{ project.description }}
+        </span>
+        <a
+          class="code"
+          :href="project.code"
+          target="_blank"
+          rel="noreferrer"
+        >
+          仓库
+        </a>
+      </div>
 
-    <div class="libraries">
-      <span
-        class="librarytag"
-        v-for="lib of project.libraries"
-        :key="lib"
-      >
-        {{ lib }}
-      </span>
-    </div>
+      <div class="libraries">
+        <span
+          class="librarytag"
+          v-for="lib of project.libraries"
+          :key="lib"
+        >
+          {{ lib }}
+        </span>
+      </div>
 
-    <div class="more">
-      <template v-if="folded[index]">
-        <a @click="() => handleFold(index)"> 更多…… </a>
-      </template>
-      <template v-else>
-        &nbsp;&nbsp;&nbsp;&nbsp;{{ project.details }}
-        <div>
-          <a @click="() => handleFold(index)"> 收起。 </a>
-        </div>
-      </template>
+      <div class="more">
+        <template v-if="folded[index]">
+          <a @click="() => handleFold(index)"> 更多…… </a>
+        </template>
+        <template v-else>
+          &nbsp;&nbsp;&nbsp;&nbsp;{{ project.details }}
+          <div>
+            <a @click="() => handleFold(index)"> 收起。 </a>
+          </div>
+        </template>
+      </div>
     </div>
-  </div>
+  </template>
 </template>
 
 <style scoped lang="less">

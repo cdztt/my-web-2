@@ -1,15 +1,17 @@
 <script setup>
+import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import useResumeStore from '../store/resume.js';
 
 const resumeStore = useResumeStore();
+const { resume } = storeToRefs(resumeStore);
 
-const resume = ref('');
+const loaded = ref(false);
 
 resumeStore.$onAction(({ name, after }) => {
-  after((result) => {
+  after(() => {
     if (name === 'getResume') {
-      resume.value = result ?? '';
+      loaded.value = true;
     }
   });
 });
@@ -17,7 +19,10 @@ resumeStore.getResume();
 </script>
 
 <template>
-  <div v-html="marked.parse(resume)"></div>
+  <template v-if="!loaded">加载中……</template>
+  <template v-else>
+    <div v-html="marked.parse(resume)"></div>
+  </template>
 </template>
 
 <style scoped></style>

@@ -1,7 +1,12 @@
 <script setup>
 import { RouterView } from 'vue-router';
-import Sider from './views/Sider.vue';
 import BeiAn from './components/BeiAn.vue';
+import useBlogStore from './store/blog.js';
+import Sider from './views/Sider.vue';
+
+const blogStore = useBlogStore();
+
+blogStore.getCategory();
 </script>
 
 <template>

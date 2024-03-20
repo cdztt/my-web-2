@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { ref, shallowRef } from 'vue';
 import axios from './axios.js';
 
 const fetchResume = () => {
@@ -28,17 +29,24 @@ const fetchProjects = () => {
 };
 
 const useResumeStore = defineStore('resume', () => {
+  const resume = ref('');
+  const projects = shallowRef([]);
+
   const getResume = async () => {
-    const resume = await fetchResume();
-    return resume;
+    if (resume.value === '') {
+      const res = await fetchResume();
+      resume.value = res ?? '';
+    }
   };
 
   const getProjects = async () => {
-    const projects = await fetchProjects();
-    return projects;
+    if (projects.value.length === 0) {
+      const res = await fetchProjects();
+      projects.value = res ?? [];
+    }
   };
 
-  return { getResume, getProjects };
+  return { resume, projects, getResume, getProjects };
 });
 
 export default useResumeStore;

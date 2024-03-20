@@ -1,8 +1,8 @@
 <script setup>
-import { storeToRefs } from "pinia";
-import { computed, reactive, watchEffect } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import useBlogStore from "../store/blog.js";
+import { storeToRefs } from 'pinia';
+import { computed, reactive, ref, watchEffect } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import useBlogStore from '../store/blog.js';
 
 const blogStore = useBlogStore();
 const route = useRoute();
@@ -10,9 +10,11 @@ const router = useRouter();
 
 const { file, category } = storeToRefs(blogStore);
 
+const loaded = ref(false);
+
 const files = computed(() => category.value?.[route.params.subjectName]);
 const currentFileIndex = computed(() =>
-  files.value?.findIndex((fileName) => fileName === route.params.fileName),
+  files.value?.findIndex((fileName) => fileName === route.params.fileName)
 );
 const prevFile = computed(() => files.value?.[currentFileIndex.value - 1]);
 const nextFile = computed(() => files.value?.[currentFileIndex.value + 1]);
@@ -29,13 +31,13 @@ const handleMouseOut = (which) => {
 };
 
 const handleClick = (which) => {
-  if (which === "prev") {
+  if (which === 'prev') {
     router.replace(
-      route.path.split("/").slice(0, -1).concat(prevFile.value).join("/"),
+      route.path.split('/').slice(0, -1).concat(prevFile.value).join('/')
     );
-  } else if (which === "next") {
+  } else if (which === 'next') {
     router.replace(
-      route.path.split("/").slice(0, -1).concat(nextFile.value).join("/"),
+      route.path.split('/').slice(0, -1).concat(nextFile.value).join('/')
     );
   }
 };
@@ -47,16 +49,24 @@ watchEffect(
 
     const data = {
       subject: route.params.subjectName,
-      filename: route.params.fileName + ".md",
+      filename: route.params.fileName + '.md',
     };
     const signal = {
       signal: controller.signal,
     };
 
-    blogStore.setFile(data, signal);
+    blogStore.getFile(data, signal);
   },
-  { flush: "post" },
+  { flush: 'post' }
 );
+
+blogStore.$onAction(({ name, after }) => {
+  after(() => {
+    if (name === 'getFile') {
+      loaded.value = true;
+    }
+  });
+});
 </script>
 
 <template>
@@ -103,11 +113,15 @@ watchEffect(
       {{
         file?.createdAt
           ? new Date(file.createdAt).toISOString().slice(0, 10)
-          : ""
+          : ''
       }}
     </div>
 
-    <div v-html="marked.parse(file?.content ?? '')"></div>
+    <div v-if="!loaded">加载中……</div>
+    <div
+      v-else
+      v-html="marked.parse(file?.content ?? '')"
+    ></div>
   </div>
 </template>
 

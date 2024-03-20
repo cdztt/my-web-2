@@ -62,7 +62,7 @@ const today = computed(() => {
   height: var(--main-fit-height);
   padding: 0 1rem;
   display: grid;
-  grid-template-rows: auto 1fr 80px;
+  grid-template-rows: auto 1fr 120px;
   &-title {
     font-size: 1.5rem;
     display: grid;
@@ -79,7 +79,7 @@ const today = computed(() => {
     overflow-y: scroll;
   }
   &-addtask {
-    margin-top: auto;
+    margin: auto 0;
   }
 }
 </style>

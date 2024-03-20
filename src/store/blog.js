@@ -1,10 +1,10 @@
-import { defineStore } from "pinia";
-import { computed, ref } from "vue";
-import axios from "./axios.js";
+import { defineStore } from 'pinia';
+import { computed, ref } from 'vue';
+import axios from './axios.js';
 
 const fetchCategory = (signal) => {
   return axios
-    .get("getCategory", signal)
+    .get('getCategory', signal)
     .then((res) => res.data)
     .then((res) => {
       if (res.fail) return;
@@ -15,7 +15,7 @@ const fetchCategory = (signal) => {
 
 const fetchFile = (data, signal) => {
   return axios
-    .post("getFile", data, signal)
+    .post('getFile', data, signal)
     .then((res) => res.data)
     .then((res) => {
       if (res.fail) return;
@@ -24,7 +24,7 @@ const fetchFile = (data, signal) => {
     .catch(() => undefined);
 };
 
-export default defineStore("blog", () => {
+export default defineStore('blog', () => {
   const category = ref();
   const file = ref();
 
@@ -40,20 +40,20 @@ export default defineStore("blog", () => {
 
   const firstSubjectName = computed(() => subjects.value[0]?.[0]);
 
-  const setCategory = async (signal) => {
+  const getCategory = async (signal) => {
     if (category.value) {
       return;
     }
     category.value = await fetchCategory(signal);
   };
 
-  const setFile = async (data, signal) => {
+  const getFile = async (data, signal) => {
     const res = await fetchFile(data, signal);
     if (!res) {
       file.value = {};
     } else {
       const { text, createdAt } = res;
-      const index = text.indexOf("\n");
+      const index = text.indexOf('\n');
       const title = text.slice(0, index);
       const content = text.slice(index);
       file.value = {
@@ -69,7 +69,7 @@ export default defineStore("blog", () => {
     file,
     subjects,
     firstSubjectName,
-    setCategory,
-    setFile,
+    getCategory,
+    getFile,
   };
 });

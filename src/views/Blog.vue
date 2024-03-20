@@ -32,7 +32,7 @@ blogStore.$onAction(({ after }) => {
     }
   });
 });
-blogStore.setCategory({ signal: controller.signal });
+blogStore.getCategory({ signal: controller.signal });
 
 onBeforeUnmount(() => {
   controller.abort();
