@@ -1,16 +1,20 @@
 <script setup>
-import { ref } from "vue";
-import FoldButton from "../components/FoldButton.vue";
-import Resume from "../components/Resume.vue";
-import SideMenu from "../components/SideMenu.vue";
+import { ref } from 'vue';
+import FoldButton from '../components/FoldButton.vue';
+import Resume from '../components/Resume.vue';
+import SideMenu from '../components/SideMenu.vue';
 
 const folded = ref(false);
 </script>
 <template>
   <div class="sider-container">
-    <div class="sider-full" v-show="!folded">
+    <div
+      class="sider-full"
+      v-show="!folded"
+    >
       <SideMenu />
       <Resume />
+      <!-- <div class="sider-prompt">（ 如果聊天室打不开，确认地址栏里是http ）</div> -->
     </div>
     <div class="sider-min">
       <FoldButton v-model:folded="folded" />
@@ -22,6 +26,7 @@ const folded = ref(false);
   font-size: calc(0.5rem + 1vw);
   display: flex;
 }
+
 .sider-full {
   box-sizing: border-box;
   min-width: 60px;
@@ -44,4 +49,9 @@ const folded = ref(false);
   border-bottom-right-radius: 10px;
   cursor: pointer;
 }
+
+// .sider-prompt {
+//   font-size: 0.7rem;
+//   margin: 2rem 1rem;
+// }
 </style>

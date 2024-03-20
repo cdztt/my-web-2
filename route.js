@@ -66,7 +66,9 @@ async function onRequest(req, res) {
       });
       res.end(content);
     } catch {
-      res.writeHead(500);
+      console.log('no file');
+      res.writeHead(404);
+      // res.writeHead(500);
       res.end();
     }
   } else if (/^\/?$/.test(url)) {
