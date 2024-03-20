@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia';
 import { computed, reactive, ref, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import useBlogStore from '../store/blog.js';
+import Loading from './Loading.vue';
 
 const blogStore = useBlogStore();
 const route = useRoute();
@@ -56,6 +57,8 @@ watchEffect(
     };
 
     blogStore.getFile(data, signal);
+
+    loaded.value = false;
   },
   { flush: 'post' }
 );
@@ -117,11 +120,8 @@ blogStore.$onAction(({ name, after }) => {
       }}
     </div>
 
-    <div v-if="!loaded">加载中……</div>
-    <div
-      v-else
-      v-html="marked.parse(file?.content ?? '')"
-    ></div>
+    <Loading v-if="!loaded" />
+    <div v-html="marked.parse(file?.content ?? '')"></div>
   </div>
 </template>
 

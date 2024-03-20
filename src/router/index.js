@@ -1,18 +1,26 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import FileList from '../components/FileList.vue';
 import FileViewer from '../components/FileViewer.vue';
-import Null from '../components/Null.vue';
+import Loading from '../components/Loading.vue';
 import About from '../views/About.vue';
 import Blog from '../views/Blog.vue';
 import Game from '../views/Game.vue';
+import Home from '../views/Home.vue';
 import Todo from '../views/Todo.vue';
 
 const routes = [
   {
     path: '/',
-    component: About,
+    component: Home,
     meta: {
       showedName: '首页',
+    },
+  },
+  {
+    path: '/about',
+    component: About,
+    meta: {
+      showedName: '简历',
     },
   },
   {
@@ -24,7 +32,7 @@ const routes = [
     children: [
       {
         path: '',
-        component: Null,
+        component: Loading,
       },
       {
         path: ':subjectName',

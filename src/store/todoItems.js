@@ -14,7 +14,7 @@ export default defineStore('todoItems', () => {
     },
     {
       id: 2,
-      taskContent: '学习',
+      taskContent: '跑步',
       createdTime: null,
       important: false,
       isFinished: false,
@@ -23,7 +23,7 @@ export default defineStore('todoItems', () => {
     },
     {
       id: 3,
-      taskContent: '学习',
+      taskContent: '跑步',
       createdTime: null,
       important: false,
       isFinished: false,
@@ -32,7 +32,7 @@ export default defineStore('todoItems', () => {
     },
     {
       id: 4,
-      taskContent: '学习',
+      taskContent: '跑步',
       createdTime: null,
       important: false,
       isFinished: false,
@@ -41,16 +41,7 @@ export default defineStore('todoItems', () => {
     },
     {
       id: 5,
-      taskContent: '学习',
-      createdTime: null,
-      important: false,
-      isFinished: false,
-      deadline: null,
-      list: '任务',
-    },
-    {
-      id: 6,
-      taskContent: '学习',
+      taskContent: '跑步',
       createdTime: null,
       important: false,
       isFinished: false,

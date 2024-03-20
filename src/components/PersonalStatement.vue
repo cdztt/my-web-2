@@ -2,6 +2,7 @@
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import useResumeStore from '../store/resume.js';
+import Loading from './Loading.vue';
 
 const resumeStore = useResumeStore();
 const { resume } = storeToRefs(resumeStore);
@@ -19,10 +20,11 @@ resumeStore.getResume();
 </script>
 
 <template>
-  <template v-if="!loaded">加载中……</template>
-  <template v-else>
-    <div v-html="marked.parse(resume)"></div>
-  </template>
+  <Loading v-if="!loaded" />
+  <div
+    v-else
+    v-html="marked.parse(resume)"
+  ></div>
 </template>
 
 <style scoped></style>

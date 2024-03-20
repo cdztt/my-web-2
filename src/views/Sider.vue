@@ -14,7 +14,6 @@ const folded = ref(false);
     >
       <SideMenu />
       <Resume />
-      <!-- <div class="sider-prompt">（ 如果聊天室打不开，确认地址栏里是http ）</div> -->
     </div>
     <div class="sider-min">
       <FoldButton v-model:folded="folded" />
@@ -49,9 +48,4 @@ const folded = ref(false);
   border-bottom-right-radius: 10px;
   cursor: pointer;
 }
-
-// .sider-prompt {
-//   font-size: 0.7rem;
-//   margin: 2rem 1rem;
-// }
 </style>

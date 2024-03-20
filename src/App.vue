@@ -2,11 +2,15 @@
 import { RouterView } from 'vue-router';
 import BeiAn from './components/BeiAn.vue';
 import useBlogStore from './store/blog.js';
+import useResumeStore from './store/resume.js';
 import Sider from './views/Sider.vue';
 
 const blogStore = useBlogStore();
+const resumeStroe = useResumeStore();
 
 blogStore.getCategory();
+resumeStroe.getProjects();
+resumeStroe.getResume();
 </script>
 
 <template>
