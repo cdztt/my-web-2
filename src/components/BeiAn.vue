@@ -13,6 +13,8 @@
 <style scoped lang="less">
 .beian {
   text-align: center;
-  color: gray;
+  a {
+    color: gray;
+  }
 }
 </style>

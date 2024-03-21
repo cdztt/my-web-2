@@ -481,6 +481,76 @@
           </g>
         </svg>
       </div>
+      <div class="home-icon home-icon-npm">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          viewBox="0 0 256 256"
+        >
+          <g fill="none">
+            <g clip-path="url(#skillIconsNpmLight0)">
+              <path
+                fill="#f4f2ed"
+                d="M196 0H60C26.863 0 0 26.863 0 60v136c0 33.137 26.863 60 60 60h136c33.137 0 60-26.863 60-60V60c0-33.137-26.863-60-60-60"
+              />
+              <g clip-path="url(#skillIconsNpmLight1)">
+                <path
+                  fill="#cb3837"
+                  d="M23 88h210v68.571H128V168H81.333v-11.429H23zm11.667 57.143H58v-34.286h11.667v34.286h11.666V99.429H34.667zM93 99.429v57.142h23.333v-11.428h23.334V99.429zm23.333 11.428H128v22.857h-11.667zm35-11.428v45.714h23.334v-34.286h11.666v34.286H198v-34.286h11.667v34.286h11.666V99.429z"
+                />
+                <path
+                  fill="#fff"
+                  d="M34.667 145.143H58v-34.286h11.667v34.286h11.666V99.429H34.667zM93 99.429v57.142h23.333v-11.428h23.334V99.429zm35 34.285h-11.667v-22.857H128zm23.333-34.285v45.714h23.334v-34.286h11.666v34.286H198v-34.286h11.667v34.286h11.666V99.429z"
+                />
+              </g>
+            </g>
+            <defs>
+              <clipPath id="skillIconsNpmLight0">
+                <path
+                  fill="#fff"
+                  d="M0 0h256v256H0z"
+                />
+              </clipPath>
+              <clipPath id="skillIconsNpmLight1">
+                <path
+                  fill="#fff"
+                  d="M23 88h210v80H23z"
+                />
+              </clipPath>
+            </defs>
+          </g>
+        </svg>
+      </div>
+      <div class="home-icon home-icon-windows">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          viewBox="0 0 256 256"
+        >
+          <g fill="none">
+            <g clip-path="url(#skillIconsWindowsLight0)">
+              <path
+                fill="#f4f2ed"
+                d="M196 0H60C26.863 0 0 26.863 0 60v136c0 33.137 26.863 60 60 60h136c33.137 0 60-26.863 60-60V60c0-33.137-26.863-60-60-60"
+              />
+              <path
+                fill="#00adef"
+                d="m40 65.663l70.968-9.665l.032 68.455l-70.934.404zm70.935 66.677l.055 68.515l-70.934-9.753l-.004-59.221zm8.602-77.607L213.636 41v82.582l-94.099.748zm94.121 78.251l-.022 82.211l-94.099-13.281l-.131-69.083z"
+              />
+            </g>
+            <defs>
+              <clipPath id="skillIconsWindowsLight0">
+                <path
+                  fill="#fff"
+                  d="M0 0h256v256H0z"
+                />
+              </clipPath>
+            </defs>
+          </g>
+        </svg>
+      </div>
     </div>
 
     <div>
@@ -522,7 +592,7 @@
             d="M144 92a12 12 0 1 1 12 12a12 12 0 0 1-12-12m-44-12a12 12 0 1 0 12 12a12 12 0 0 0-12-12m116 64a87.76 87.76 0 0 1-3 23l22.24 9.72A8 8 0 0 1 232 192a7.89 7.89 0 0 1-3.2-.67L207.38 182a88 88 0 0 1-158.76 0l-21.42 9.33a7.89 7.89 0 0 1-3.2.67a8 8 0 0 1-3.2-15.33L43 167a87.76 87.76 0 0 1-3-23v-8H16a8 8 0 0 1 0-16h24v-8a87.76 87.76 0 0 1 3-23l-22.2-9.67a8 8 0 1 1 6.4-14.66L48.62 74a88 88 0 0 1 158.76 0l21.42-9.36a8 8 0 0 1 6.4 14.66L213 89.05a87.76 87.76 0 0 1 3 23v8h24a8 8 0 0 1 0 16h-24ZM56 120h144v-8a72 72 0 0 0-144 0Zm64 95.54V136H56v8a72.08 72.08 0 0 0 64 71.54M200 144v-8h-64v79.54A72.08 72.08 0 0 0 200 144"
           />
         </svg>
-        IOS 端的浏览器打不开聊天室网页。
+        IOS 端平板的浏览器打不开聊天室网页，手机可以。
       </p>
     </div>
   </div>
@@ -536,46 +606,53 @@
     grid-template-rows: repeat(5, 1fr);
     grid-template-columns: repeat(9, 1fr);
     text-align: center;
-    margin: 1rem 0;
   }
 
   &-icon {
     font-size: 3rem;
     &-vue {
       grid-row: 1;
-      grid-column: 1;
+      grid-column: 5;
     }
     &-pinia {
       grid-row: 2;
-      grid-column: 2;
-    }
-    &-node {
-      grid-row: 3;
       grid-column: 3;
     }
-    &-js {
-      grid-row: 4;
-      grid-column: 4;
-    }
-    &-vite {
-      grid-row: 5;
+    &-node {
+      grid-row: 2;
       grid-column: 5;
     }
+    &-js {
+      grid-row: 2;
+      grid-column: 7;
+    }
+    &-vite {
+      grid-row: 3;
+      grid-column: 4;
+    }
     &-html {
-      grid-row: 4;
+      grid-row: 3;
       grid-column: 6;
     }
     &-css {
-      grid-row: 3;
-      grid-column: 7;
+      grid-row: 4;
+      grid-column: 2;
     }
     &-less {
-      grid-row: 2;
-      grid-column: 8;
+      grid-row: 4;
+      grid-column: 4;
     }
     &-vscode {
-      grid-row: 1;
-      grid-column: 9;
+      grid-row: 4;
+      grid-column: 6;
+    }
+    &-npm {
+      grid-row: 4;
+      grid-column: 8;
+    }
+    &-windows {
+      grid-row: 5;
+      grid-column: 5;
     }
   }
 }
