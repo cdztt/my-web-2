@@ -75,23 +75,38 @@ const handleSubjectClick = (name) => {
         >
           {{ name }}
         </span>
-        <span>{{ ` (${count})` }}</span>
+
+        <span
+          :class="{
+            'blog-subjects-count-selected': currentSubjectName === name,
+          }"
+        >
+          (</span
+        >{{ `${count}`
+        }}<span
+          :class="{
+            'blog-subjects-count-selected': currentSubjectName === name,
+          }"
+          >)
+        </span>
       </div>
     </div>
   </div>
 </template>
 <style scoped lang="less">
 .blog {
-  font-size: calc(0.5rem + 1vw);
+  font-size: calc(0.5rem + 0.6vw);
   display: grid;
   grid-template-columns: 1fr auto;
-  height: var(--main-fit-height);
+  box-sizing: border-box;
+  height: 100%;
   &-main {
-    padding: 0 1rem;
+    padding: 0 5rem;
     overflow: scroll;
   }
   &-sider {
-    padding-left: 1rem;
+    font-size: calc(0.5rem + 1vw);
+    padding-left: 0.8rem;
     border-left: 1px solid orange;
   }
 }
@@ -103,6 +118,9 @@ const handleSubjectClick = (name) => {
     &-selected {
       text-decoration-color: orange;
     }
+  }
+  &-count-selected {
+    color: orange;
   }
 }
 </style>

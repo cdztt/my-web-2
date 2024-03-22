@@ -76,9 +76,10 @@ resumeStore.getProjects();
 
 <style scoped lang="less">
 .project {
-  margin: 1.5rem 0;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid gray;
+  margin: 1rem 5rem 1rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 2px dotted gray;
+  scroll-snap-align: start;
 
   .title {
     font-size: 1em;

@@ -1,6 +1,6 @@
 <script setup>
-defineProps(["tabs", "activeTab"]);
-defineEmits(["update:activeTab"]);
+defineProps(['tabs', 'activeTab']);
+defineEmits(['update:activeTab']);
 </script>
 
 <template>
@@ -18,8 +18,6 @@ defineEmits(["update:activeTab"]);
 
 <style scoped lang="less">
 .tabs {
-  margin-bottom: 1.5rem;
-
   .tab {
     margin: 0 1em;
     font-size: 1.2em;
