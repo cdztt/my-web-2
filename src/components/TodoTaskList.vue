@@ -39,10 +39,12 @@ const deadline = computed(() => {
           ✓
         </span>
       </span>
+
       <span class="todo-tasklist-content-text">
         {{ taskContent }}
       </span>
     </div>
+
     <div class="todo-tasklist-footer">
       <span>{{ list }}</span>
       <span>{{ deadline[index] }}</span>
@@ -55,10 +57,19 @@ const deadline = computed(() => {
   border: 1px dotted gray;
   border-radius: 3px;
   margin: 0.2rem;
+  scroll-snap-align: start;
+  overflow: hidden;
+
   &-content {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
     &-finish {
+      text-align: center;
       display: inline-block;
       width: @left-width;
+
       &:active {
         color: orange;
       }

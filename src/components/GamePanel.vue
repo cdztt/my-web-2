@@ -5,6 +5,7 @@ defineEmits(['update:mode', 'update:level', 'game-start']);
 <template>
   <div class="gamepanel">
     <div>
+      <label>选择棋子：</label>
       <label>
         <input
           type="radio"
@@ -35,6 +36,7 @@ defineEmits(['update:mode', 'update:level', 'game-start']);
     </div>
 
     <div>
+      <label>选择难度：</label>
       <label>
         <input
           type="radio"
@@ -62,15 +64,19 @@ defineEmits(['update:mode', 'update:level', 'game-start']);
 </template>
 <style scoped lang="less">
 .gamepanel {
+  font-size: 0.8rem;
   > div {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
   label {
-    margin-right: 1.5rem;
+    margin-right: 1rem;
   }
   &-start {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     text-align: center;
+    > button {
+      width: 80px;
+    }
   }
 }
 </style>

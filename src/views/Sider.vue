@@ -12,9 +12,13 @@ const folded = ref(false);
       class="sider-full"
       v-show="!folded"
     >
-      <SideMenu />
+      <div class="sider-full-version">( Vue 版 )</div>
+      <div class="sider-full-menu">
+        <SideMenu />
+      </div>
       <Resume />
     </div>
+
     <div class="sider-min">
       <FoldButton v-model:folded="folded" />
     </div>
@@ -22,20 +26,31 @@ const folded = ref(false);
 </template>
 <style scoped lang="less">
 .sider-container {
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
   font-size: calc(0.5rem + 1vw);
   display: flex;
 }
 
 .sider-full {
   box-sizing: border-box;
-  min-width: 60px;
   width: 6em;
-  min-height: calc(100vh - 1rem - 1rem);
-  position: sticky;
-  top: 1rem;
   border: 1px solid orange;
   border-radius: 10px;
   border-top-right-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-version {
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+  }
+
+  &-menu {
+    margin-bottom: 4rem;
+  }
 }
 
 .sider-min {

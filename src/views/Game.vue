@@ -98,8 +98,8 @@ const gameStart = () => {
 <style scoped lang="less">
 .game {
   display: grid;
-  gap: 3rem;
+  gap: 2rem;
   justify-items: center;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 </style>

@@ -17,13 +17,19 @@ const filterType = ref('today');
 </template>
 <style scoped lang="less">
 .todo {
-  height: var(--main-fit-height);
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
   display: grid;
   grid-template-columns: minmax(150px, 1fr) 4fr;
+  gap: 1rem;
+
   &-left {
-    padding-right: 1rem;
+    overflow: hidden;
   }
+
   &-main {
+    overflow: scroll;
   }
 }
 </style>

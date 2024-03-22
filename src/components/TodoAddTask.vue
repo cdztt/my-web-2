@@ -14,8 +14,10 @@ const taskDeadline = shallowRef(null);
 const tooltip = inject('tooltip');
 const popconfirm = inject('popconfirm');
 
+const MAX_LENGTH = 30;
+
 const handleAddTask = () => {
-  const taskContent = taskText.value.trim();
+  const taskContent = taskText.value.trim().slice(0, MAX_LENGTH);
 
   if (taskContent !== '') {
     todoItems.addItem(taskContent, taskDeadline.value);
@@ -23,6 +25,8 @@ const handleAddTask = () => {
   }
 
   taskText.value = '';
+
+  emit('addTask');
 };
 
 const handleCalendarSave = (e) => {
@@ -44,12 +48,16 @@ watch(popconfirm.result, (result) => {
     >
       +
     </span>
+
     <input
       type="text"
       class="todo-addtask-input-text"
       v-model="taskText"
       placeholder="添加任务"
+      :maxlength="MAX_LENGTH"
+      @keydown.enter="handleAddTask"
     />
+
     <span class="todo-addtask-input-options">
       <Calendar
         placement="topleft"
@@ -60,17 +68,21 @@ watch(popconfirm.result, (result) => {
           📅
         </span>
       </Calendar>
+
       <span
         v-show="taskDeadline"
         @mouseenter="tooltip.config({ content: '点击删除' }).popup"
         @click="popconfirm.config({ content: '删除截止日期' }).popup"
         class="todo-addtask-input-options-deadline"
       >
-        {{
-          `${taskDeadline?.month}月${taskDeadline?.date}日, 星期${taskDeadline?.dayZh}`
-        }}
-        <br />
-        {{ `${taskDeadline?.hours}点${taskDeadline?.minutes}分` }}
+        <span>
+          {{
+            `${taskDeadline?.month}月${taskDeadline?.date}日, 星期${taskDeadline?.dayZh}`
+          }}
+        </span>
+        <span>
+          {{ `${taskDeadline?.hours}点${taskDeadline?.minutes}分` }}
+        </span>
       </span>
     </span>
   </div>
@@ -82,28 +94,35 @@ watch(popconfirm.result, (result) => {
     border-radius: 5px;
     display: grid;
     grid-template-columns: auto 1fr auto;
+    align-items: center;
+    height: 3rem;
+    line-height: 3rem;
+
     &-prefix {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin: 0 0.8rem;
       cursor: default;
     }
     &-text {
       border: none;
       font-size: 1.2rem;
+      box-sizing: border-box;
+      height: 100%;
     }
     &-options {
       font-size: 2rem;
       display: grid;
       grid-template-columns: auto auto;
+      align-items: center;
       margin: 0 0.2rem;
       &-deadline {
-        font-size: 0.6rem;
-        margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        font-size: 0.7rem;
+        line-height: 1.5;
+        cursor: default;
       }
     }
-  }
-  &-blank {
-    height: 2rem;
   }
 }
 </style>

@@ -14,26 +14,55 @@ resumeStroe.getResume();
 </script>
 
 <template>
-  <div class="layout">
-    <Sider />
-    <div class="layout-main">
-      <RouterView />
+  <div class="app">
+    <div class="app-layout">
+      <div class="app-layout-sider">
+        <Sider />
+      </div>
+      <div class="app-layout-main">
+        <RouterView />
+      </div>
+    </div>
+
+    <div class="app-beian">
+      <BeiAn></BeiAn>
     </div>
   </div>
-  <BeiAn></BeiAn>
 </template>
 
 <style scoped lang="less">
-.layout {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  padding: 1rem;
-  gap: 0.5rem;
+.app {
+  height: 100vh;
+  width: 100vw;
 
-  .layout-main {
-    border: 1px solid orange;
-    border-radius: 10px;
-    padding: 1rem;
+  &-layout {
+    box-sizing: border-box;
+    height: 97%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    gap: 0.5rem;
+
+    &-sider {
+      box-sizing: border-box;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    &-main {
+      box-sizing: border-box;
+      height: 100%;
+      overflow-y: hidden;
+      border: 1px solid orange;
+      border-radius: 10px;
+      padding: 0.5rem;
+    }
+  }
+
+  &-beian {
+    box-sizing: border-box;
+    height: 3%;
   }
 }
 </style>

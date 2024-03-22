@@ -19,7 +19,6 @@ const handleClick = (path) => {
 
 <template>
   <div class="menu">
-    <div :style="{ 'font-size': '1rem' }">( Vue 版 )</div>
     <div
       v-for="{ path, showedName } of menuItems"
       :key="path"
@@ -40,7 +39,6 @@ const handleClick = (path) => {
 
 <style scoped lang="less">
 .menu {
-  padding: 1rem 0;
   font-size: calc(0.5rem + 1vw);
   text-align: center;
 }

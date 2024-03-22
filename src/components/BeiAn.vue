@@ -12,7 +12,11 @@
 </template>
 <style scoped lang="less">
 .beian {
-  text-align: center;
+  font-size: 0.8rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   a {
     color: gray;
   }

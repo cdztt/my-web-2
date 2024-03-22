@@ -1,6 +1,6 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { computed, inject } from 'vue';
+import { computed, inject, ref } from 'vue';
 import useTodoItems from '../store/todoItems.js';
 import TodoAddTask from './TodoAddTask.vue';
 import TodoTaskList from './TodoTaskList.vue';
@@ -11,6 +11,8 @@ const todoItems = useTodoItems();
 const { tdItems } = storeToRefs(todoItems);
 
 const todoLists = inject('todoLists');
+
+const itemListRef = ref(null);
 
 const menuItem = computed(() =>
   todoLists.lists.find((list) => list.filterType === props.filterType)
@@ -33,6 +35,10 @@ const today = computed(() => {
   };
   return `${year}年 ${month}月${date}日 星期${ZH_DAY_MAP[day]}`;
 });
+
+const handleAddTask = () => {
+  itemListRef.value.scrollTop = itemListRef.value.scrollHeight;
+};
 </script>
 <template>
   <div class="todomain">
@@ -41,45 +47,51 @@ const today = computed(() => {
         {{ menuItem.emoji }}
         {{ menuItem.title }}
       </span>
-      <span> ⋯ </span>
-      <div
-        v-show="menuItem.filterType === 'today'"
-        class="todomain-title-date"
-      >
-        {{ today }}
+      <div class="todomain-title-date">
+        &nbsp;{{ menuItem.filterType === 'today' ? today : '' }}
       </div>
     </div>
 
-    <div class="todomain-list">
+    <div
+      class="todomain-list"
+      ref="itemListRef"
+    >
       <TodoTaskList :data="tdItems" />
     </div>
 
-    <TodoAddTask class="todomain-addtask" />
+    <div class="todomain-addtask">
+      <TodoAddTask @addTask="handleAddTask" />
+    </div>
   </div>
 </template>
 <style scoped lang="less">
 .todomain {
-  height: var(--main-fit-height);
-  padding: 0 1rem;
+  box-sizing: border-box;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
   display: grid;
-  grid-template-rows: auto 1fr 120px;
+  grid-template-rows: auto 1fr;
+  gap: 0.5rem;
+
   &-title {
     font-size: 1.5rem;
     display: grid;
-    grid-template-columns: 1fr auto;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    margin-bottom: 1rem;
+    grid-template-rows: 1fr auto;
     &-date {
       font-size: 0.8rem;
     }
   }
   &-list {
     overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    height: calc(100% - 6.5rem);
   }
   &-addtask {
-    margin: auto 0;
+    position: absolute;
+    left: 0;
+    right: 1.5rem;
+    bottom: 1.5rem;
   }
 }
 </style>

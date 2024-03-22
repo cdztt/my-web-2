@@ -26,11 +26,12 @@ const handleAddList = () => {
 };
 
 const handleBlur = async (e) => {
-  todoLists.actions.updateLastListTitle(e.target.value);
+  const input = e.target.value.trim();
+  todoLists.actions.updateLastListTitle(input);
   await nextTick();
   await nextTick(); //必须用2次nextTick，比watch的nextTick多一次，确保在watch之后执行
   const span = document.createElement('span');
-  span.textContent = e.target.value;
+  span.textContent = input;
   lastInputRef.value.parentNode.replaceChild(span, lastInputRef.value);
 };
 
@@ -48,7 +49,6 @@ watch(
     if (newLength !== oldLength) {
       lastInputRef.value.focus();
       lastInputRef.value.select();
-      lastInputRef.value.addEventListener('blur', handleBlur, { once: true });
     }
   }
 );
@@ -90,8 +90,11 @@ watch(
         <template v-else>
           <input
             type="text"
+            maxlength="12"
             :value="title"
             class="todomenu-lists-item-input"
+            @keydown.enter="handleBlur"
+            @blur="handleBlur"
           />
         </template>
       </div>
@@ -109,12 +112,18 @@ watch(
 </template>
 <style scoped lang="less">
 .todomenu {
-  height: var(--main-fit-height);
+  box-sizing: border-box;
+  height: 100%;
   display: grid;
-  grid-template-rows: 1fr 120px;
+  grid-template-rows: 1fr 6rem;
+
   &-lists {
+    overflow-x: hidden;
     overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+
     &-item {
+      scroll-snap-align: start;
       --selected-background-color: rgba(128, 128, 128, 0.2);
       font-size: 0.8rem;
       display: grid;
@@ -123,6 +132,7 @@ watch(
       margin-bottom: 0.8rem;
       border-radius: 4px;
       cursor: default;
+
       &-selected {
         background-color: var(--selected-background-color);
       }
@@ -134,13 +144,14 @@ watch(
         }
       }
       &-emoji {
-        font-size: 1rem;
         width: 2rem;
+        font-size: 1rem;
         text-align: center;
       }
       &-input {
         border: none;
-        min-width: 70px;
+        box-sizing: border-box;
+        width: 90%;
         &:disabled {
           color: inherit;
         }
@@ -150,20 +161,23 @@ watch(
       }
     }
   }
+
   &-new {
+    box-sizing: border-box;
+    width: 80%;
     margin: auto 0;
     border: 2px solid gray;
     border-radius: 5px;
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
-    cursor: default;
+    cursor: pointer;
     &-prefix {
-      font-size: 2rem;
-      margin: 0 0.8rem;
+      font-size: 1.5rem;
+      margin: 0 0.6rem;
     }
     &-text {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
   }
 }
