@@ -36,9 +36,10 @@ const useResumeStore = defineStore('resume', () => {
   const getResume = async () => {
     if (resume.value === '') {
       let html = await fetchResume();
-      const labels = [];
 
       if (html) {
+        const labels = [];
+
         html = html
           .split('\n')
           .map((line) => {
@@ -59,6 +60,7 @@ const useResumeStore = defineStore('resume', () => {
 
               labels.push({ tag, text, id });
             }
+
             return line;
           })
           .join('\n');
