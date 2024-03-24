@@ -1,27 +1,30 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { ref } from 'vue';
+import { RouterView, useRouter } from 'vue-router';
 import NavTab from '../components/NavTab.vue';
-import PersonalStatement from '../components/PersonalStatement.vue';
-import ProjectList from '../components/ProjectList.vue';
+import useResumeStore from '../store/resume';
 
 const tabs = [
   {
-    tabName: '个人项目',
-    component: ProjectList,
-    props: {},
+    tabName: '个人技能',
+    path: '',
   },
   {
-    tabName: '个人技能',
-    component: PersonalStatement,
-    props: {},
+    tabName: '个人项目',
+    path: '/projects',
   },
 ];
-const activeTab = ref(tabs[0].tabName);
+
+const router = useRouter();
 const contentRef = ref(null);
 
-const activeComponent = computed(() => {
-  return tabs.find((tab) => tab.tabName === activeTab.value);
-});
+const resumeStore = useResumeStore();
+const { skillLabels } = storeToRefs(resumeStore);
+
+const handleClickTab = (path) => {
+  router.push('/about' + path);
+};
 
 const handleScroll = () => {
   contentRef.value.scroll({ top: 0, behavior: 'smooth' });
@@ -32,9 +35,19 @@ const handleScroll = () => {
   <div class="about">
     <div class="about-nav">
       <NavTab
-        :tabs="tabs.map((tab) => tab.tabName)"
-        v-model:activeTab="activeTab"
+        :tabs="tabs"
+        @click-tab="handleClickTab"
       />
+    </div>
+
+    <div class="about-labels">
+      <a
+        v-for="{ tag, text, id } of skillLabels"
+        :href="`#${id}`"
+        :key="id"
+        :class="`about-labels-${tag}`"
+        >{{ text }}</a
+      >
     </div>
 
     <div
@@ -61,10 +74,7 @@ const handleScroll = () => {
       class="about-content"
       ref="contentRef"
     >
-      <component
-        :is="activeComponent.component"
-        v-bind="activeComponent.props"
-      />
+      <RouterView />
     </div>
   </div>
 </template>
@@ -97,12 +107,31 @@ const handleScroll = () => {
     scroll-snap-type: y mandatory;
   }
 
+  &-labels {
+    position: absolute;
+    right: 8rem;
+    line-height: 2;
+    a {
+      color: rgb(78, 78, 78);
+      display: block;
+      font-size: 0.8rem;
+      text-decoration: underline;
+    }
+    &-h3 {
+      position: relative;
+      left: -0.8rem;
+      font-style: italic;
+      &::after {
+        content: '：';
+      }
+    }
+  }
   &-rocket {
     font-size: 5rem;
     color: orangered;
     position: absolute;
-    right: 5rem;
-    bottom: 0;
+    right: 6rem;
+    top: 70%;
     cursor: pointer;
   }
 }

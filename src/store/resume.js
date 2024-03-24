@@ -30,12 +30,42 @@ const fetchProjects = () => {
 
 const useResumeStore = defineStore('resume', () => {
   const resume = ref('');
+  const skillLabels = shallowRef(null);
   const projects = shallowRef([]);
 
   const getResume = async () => {
     if (resume.value === '') {
-      const res = await fetchResume();
-      resume.value = res ?? '';
+      let html = await fetchResume();
+      const labels = [];
+
+      if (html) {
+        html = html
+          .split('\n')
+          .map((line) => {
+            const result = line.match(/(?<=<(?<tag>h3|h4)>).*(?=<\/\k<tag>>)/);
+
+            if (result) {
+              const {
+                0: text,
+                index,
+                groups: { tag },
+              } = result;
+              const id = window.crypto.getRandomValues(new Uint16Array(1))[0];
+
+              line =
+                line.slice(0, index - 1) +
+                ` id="${id}"` +
+                line.slice(index - 1);
+
+              labels.push({ tag, text, id });
+            }
+            return line;
+          })
+          .join('\n');
+
+        resume.value = html;
+        skillLabels.value = labels;
+      }
     }
   };
 
@@ -46,7 +76,7 @@ const useResumeStore = defineStore('resume', () => {
     }
   };
 
-  return { resume, projects, getResume, getProjects };
+  return { resume, skillLabels, projects, getResume, getProjects };
 });
 
 export default useResumeStore;

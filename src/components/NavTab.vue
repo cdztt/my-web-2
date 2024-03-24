@@ -1,15 +1,23 @@
 <script setup>
-defineProps(['tabs', 'activeTab']);
-defineEmits(['update:activeTab']);
+import { ref } from 'vue';
+const props = defineProps(['tabs']);
+const emit = defineEmits(['click-tab']);
+
+const activeTab = ref(props.tabs[0].tabName);
+
+const handleClick = (tabName, path) => {
+  activeTab.value = tabName;
+  emit('click-tab', path);
+};
 </script>
 
 <template>
   <div class="tabs">
     <span
-      v-for="tabName of tabs"
-      :key="tabName"
+      v-for="({ tabName, path }, idx) of tabs"
+      :key="idx"
       :class="['tab', { 'active-tab': activeTab === tabName }]"
-      @click="$emit('update:activeTab', tabName)"
+      @click="handleClick(tabName, path)"
     >
       {{ tabName }}
     </span>

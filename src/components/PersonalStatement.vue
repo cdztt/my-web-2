@@ -23,8 +23,30 @@ resumeStore.getResume();
   <Loading v-if="!loaded" />
   <div
     v-else
-    v-html="marked.parse(resume)"
+    v-html="resume"
+    class="my-resume-skill"
   ></div>
 </template>
 
-<style scoped></style>
+<style lang="less">
+.my-resume-skill {
+  line-height: 2;
+  font-size: 1rem;
+  & > h3 {
+    font-style: italic;
+    &:after {
+      content: '：';
+    }
+  }
+  & ul > li {
+    font-size: 0.8rem;
+  }
+  & a {
+    font-size: 1rem;
+  }
+  & hr {
+    width: 80%;
+    margin-left: 0;
+  }
+}
+</style>

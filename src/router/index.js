@@ -1,7 +1,9 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import FileList from '../components/FileList.vue';
 import FileViewer from '../components/FileViewer.vue';
 import Loading from '../components/Loading.vue';
+import PersonalStatement from '../components/PersonalStatement.vue';
+import ProjectList from '../components/ProjectList.vue';
 import About from '../views/About.vue';
 import Blog from '../views/Blog.vue';
 import Game from '../views/Game.vue';
@@ -22,6 +24,16 @@ const routes = [
     meta: {
       showedName: '简历',
     },
+    children: [
+      {
+        path: '',
+        component: PersonalStatement,
+      },
+      {
+        path: 'projects',
+        component: ProjectList,
+      },
+    ],
   },
   {
     path: '/blog',
@@ -67,6 +79,6 @@ export const menuItems = routes.map((route) => ({
 }));
 
 export default createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
