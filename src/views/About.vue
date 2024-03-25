@@ -136,6 +136,7 @@ const jump = (id) => {
       display: block;
       font-size: 0.8rem;
       text-decoration: underline;
+      cursor: pointer;
     }
     &-h3 {
       position: relative;
