@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import FileList from '../components/FileList.vue';
 import FileViewer from '../components/FileViewer.vue';
 import Loading from '../components/Loading.vue';
@@ -79,6 +79,6 @@ export const menuItems = routes.map((route) => ({
 }));
 
 export default createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });

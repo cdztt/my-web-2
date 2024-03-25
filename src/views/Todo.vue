@@ -29,7 +29,7 @@ const filterType = ref('today');
   }
 
   &-main {
-    overflow: scroll;
+    overflow-y: scroll;
   }
 }
 </style>

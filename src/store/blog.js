@@ -38,7 +38,8 @@ export default defineStore('blog', () => {
     ]);
   });
 
-  const firstSubjectName = computed(() => subjects.value[0]?.[0]);
+  // 显示js的文章
+  const firstSubjectName = computed(() => subjects.value[1]?.[0]);
 
   const getCategory = async (signal) => {
     if (category.value) {

@@ -1,6 +1,6 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { RouterView, useRouter } from 'vue-router';
 import NavTab from '../components/NavTab.vue';
 import useResumeStore from '../store/resume';
@@ -18,16 +18,33 @@ const tabs = [
 
 const router = useRouter();
 const contentRef = ref(null);
+const contentRefOffsetTop = ref();
+const currentPath = ref('');
 
 const resumeStore = useResumeStore();
 const { skillLabels } = storeToRefs(resumeStore);
 
+watchEffect(() => {
+  if (contentRef.value) {
+    contentRefOffsetTop.value = contentRef.value.offsetTop;
+  }
+});
+
 const handleClickTab = (path) => {
   router.push('/about' + path);
+  currentPath.value = path;
 };
 
 const handleScroll = () => {
   contentRef.value.scroll({ top: 0, behavior: 'smooth' });
+};
+
+const jump = (id) => {
+  const offsetTop = document.getElementById(id).offsetTop;
+  contentRef.value.scroll({
+    top: offsetTop - contentRefOffsetTop.value,
+    behavior: 'smooth',
+  });
 };
 </script>
 
@@ -40,17 +57,20 @@ const handleScroll = () => {
       />
     </div>
 
-    <div class="about-labels">
-      <a
-        v-for="{ tag, text, id } of skillLabels"
-        :href="`#${id}`"
-        :key="id"
+    <div
+      class="about-labels"
+      v-show="currentPath === ''"
+    >
+      <span
+        v-for="({ tag, text, id }, index) of skillLabels"
+        :key="index"
         :class="`about-labels-${tag}`"
-        >{{ text }}</a
+        @click="jump(id)"
+        >{{ text }}</span
       >
     </div>
 
-    <div
+    <!-- <div
       class="about-rocket"
       @click="handleScroll"
     >
@@ -68,7 +88,7 @@ const handleScroll = () => {
           d="M24 29.13V43.5m-4.51-14.37v9.77m15.1-9.77L24 4.5L13.41 29.13m15.1 0v9.77"
         />
       </svg>
-    </div>
+    </div> -->
 
     <div
       class="about-content"
@@ -111,7 +131,7 @@ const handleScroll = () => {
     position: absolute;
     right: 8rem;
     line-height: 2;
-    a {
+    span {
       color: rgb(78, 78, 78);
       display: block;
       font-size: 0.8rem;
@@ -126,13 +146,13 @@ const handleScroll = () => {
       }
     }
   }
-  &-rocket {
-    font-size: 5rem;
-    color: orangered;
-    position: absolute;
-    right: 6rem;
-    top: 70%;
-    cursor: pointer;
-  }
+  // &-rocket {
+  //   font-size: 5rem;
+  //   color: orangered;
+  //   position: absolute;
+  //   right: 6rem;
+  //   top: 70%;
+  //   cursor: pointer;
+  // }
 }
 </style>

@@ -1,8 +1,10 @@
 <script setup>
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 import FoldButton from '../components/FoldButton.vue';
 import Resume from '../components/Resume.vue';
 import SideMenu from '../components/SideMenu.vue';
+
+const tooltip = inject('tooltip');
 
 const folded = ref(false);
 </script>
@@ -12,7 +14,17 @@ const folded = ref(false);
       class="sider-full"
       v-show="!folded"
     >
-      <div class="sider-full-version">( Vue 版 )</div>
+      <div
+        class="sider-full-version"
+        @mouseenter="
+          tooltip.config({
+            content: '网址改成 https:// 访问 React 版',
+            placement: 'bottomright',
+          }).popup
+        "
+      >
+        ( Vue 版 )
+      </div>
       <div class="sider-full-menu">
         <SideMenu />
       </div>
@@ -42,10 +54,14 @@ const folded = ref(false);
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 
   &-version {
     font-size: 0.8rem;
     margin-top: 0.4rem;
+    text-decoration: underline;
   }
 
   &-menu {

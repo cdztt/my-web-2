@@ -30,8 +30,8 @@ resumeStore.getResume();
 
 <style lang="less">
 .my-resume-skill {
+  font-size: 1.1em;
   line-height: 2;
-  font-size: 1rem;
   & > h3 {
     font-style: italic;
     &:after {

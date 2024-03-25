@@ -87,7 +87,7 @@ resumeStore.getProjects();
   }
 
   .subtitle {
-    font-size: 0.7em;
+    font-size: 0.8em;
 
     .description {
       font-style: italic;
