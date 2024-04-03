@@ -20,7 +20,11 @@ resumeStroe.getResume();
         <Sider />
       </div>
       <div class="app-layout-main">
-        <RouterView />
+        <router-view v-slot="{ Component }">
+          <transition name="fade">
+            <component :is="Component" />
+          </transition>
+        </router-view>
       </div>
     </div>
 
@@ -64,5 +68,15 @@ resumeStroe.getResume();
     box-sizing: border-box;
     height: 3%;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
