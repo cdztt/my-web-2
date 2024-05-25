@@ -55,7 +55,7 @@ const folded = ref(false);
   flex-direction: column;
   align-items: center;
   @media screen and (max-width: 800px) {
-    display: none;
+    // display: none;
   }
 
   &-version {
