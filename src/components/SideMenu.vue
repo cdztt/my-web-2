@@ -28,7 +28,7 @@ const handleClick = (path) => {
       {{ showedName }}
     </div>
     <a
-      href="http://hueyond.run/chat"
+      href="http://124.223.92.23/chat"
       target="_blank"
       rel="noreferrer"
     >

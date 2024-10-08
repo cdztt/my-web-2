@@ -26,7 +26,7 @@ export default {
     const myName = hasLogin ? window.nickName : "未登录";
 
     const protocol = window.protocol === "http" ? "ws" : "wss";
-    const host = window.env === "dev" ? "localhost" : "hueyond.run";
+    const host = window.env === "dev" ? "localhost" : "124.223.92.23";
     const base = window.base;
     const url = `${protocol}://${host}${base}`;
 

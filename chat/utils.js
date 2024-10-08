@@ -14,10 +14,10 @@ function getTls(mode) {
   } else if (mode === "prod") {
     tls = {
       pfx: readFileSync(
-        path.join(__dirname, "./env/hueyond.run_iis/hueyond.run.pfx"),
+        path.join(__dirname, "./env/cdztt.cn_iis/cdztt.cn.pfx"),
       ),
       passphrase: readFileSync(
-        path.join(__dirname, "./env/hueyond.run_iis/keystorePass.txt"),
+        path.join(__dirname, "./env/cdztt.cn_iis/keystorePass.txt"),
         "utf8",
       ),
     };
